@@ -1,0 +1,16 @@
+Collectfast==0.2.0
+Pillow==2.5.3
+South==1.0
+Django==1.7
+boto==2.32.1
+dj-static==0.0.6
+django-admin-bootstrapped==1.6.9
+django-gunicorn==0.1.1
+django-storages==1.1.8
+django-ckeditor-updated==4.4.4
+gunicorn==19.1.1
+psycopg2==2.5.4
+python-dateutil==2.2
+pytz==2014.4
+six==1.7.3
+static3==0.5.1

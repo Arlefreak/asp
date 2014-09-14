@@ -110,7 +110,7 @@ else:
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID',False)
     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY',False)
     AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME',False)
-    AWS_STORAGE_BUCKET_NAME = 'ixayasite'
+    AWS_STORAGE_BUCKET_NAME = 'aspsite'
     AWS_QUERYSTRING_AUTH = False
     AWS_PRELOAD_METADATA = True
     STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'

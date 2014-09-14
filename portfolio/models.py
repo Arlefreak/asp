@@ -14,12 +14,15 @@ def upload_image_to(instance, filename):
             filename_ext.lower(),)
 
 class Proyect(models.Model):
-    name = models.CharField('Name', max_length=140)
-    description = models.TextField('Description')
+    name_es = models.CharField('Name', max_length=140)
+    name_en = models.CharField('Name', max_length=140)
+    description_es = RichTextField()
+    description_en = RichTextField()
     pub_date = models.DateTimeField('Created', editable=False, auto_now_add=True)
-    updated_date = models.DateTimeField('Updated', editable=False, auto_now=True)
     mainImage =  models.ImageField('Main Image', upload_to=upload_image_to, blank=False)
-    decondImage =  models.ImageField('Second Image', upload_to=upload_image_to, blank=True)
+    secondImage =  models.ImageField('Second Image', upload_to=upload_image_to, blank=True)
+    imageOrientationOpts =  (('left', 'left'), ('rigt', 'right'), ('up', 'up'), ('down', 'down'), ('cntr', 'center'))
+    imageOrientation = models.CharField('Tipo', max_length=4, choices=imageOrientationOpts, default='cntr')
     published = models.BooleanField('Published',default=False)
     slug = models.SlugField('Slug Name', max_length=100)
     def save(self, *args, **kwargs):
@@ -43,6 +46,8 @@ class Image(models.Model):
     idImage = models.AutoField(primary_key=True)
     name = models.CharField('Nombre', max_length=100, blank=True)
     image =  models.ImageField('Imagen', upload_to=upload_image_to, blank=True, null=True)
+    imageOrientationOpts =  (('left', 'left'), ('rigt', 'right'), ('up', 'up'), ('down', 'down'), ('cntr', 'center'), ('covr', 'cover'))
+    imageOrientation = models.CharField('Tipo', max_length=4, choices=imageOrientationOpts, default='covr')
     proyect = models.ForeignKey('Proyect')
     def admin_image(self):
         return '<img style="height:100px; width: auto; display: block;" src="%s"/>' % str(self.blob.url)
@@ -56,7 +61,8 @@ class Image(models.Model):
 
 class singleInformation(models.Model):
     aboutImage = models.ImageField('Imagen about', upload_to = upload_image_to,null = False, blank = False)
-    aboutText = RichTextField()
+    aboutText_es = RichTextField()
+    aboutText_en = RichTextField()
     line1 = models.CharField('linea 1', max_length=140, null=True, blank=True)
     line2 = models.CharField('linea 2', max_length=140, null=True, blank=True)
     line3 = models.CharField('linea 3', max_length=140, null=True, blank=True)
@@ -80,9 +86,12 @@ class singleInformation(models.Model):
         verbose_name_plural = "About"
 
 class Press(models.Model):
-    name = models.CharField(max_length=140, null=False, blank=False)
+    name_es = models.CharField(max_length=140, null=False, blank=False)
+    name_en = models.CharField(max_length=140, null=False, blank=False)
     mainImage = models.ImageField('Imagen principal', upload_to = upload_image_to,null = False, blank = False)
-    description = RichTextField()
+    description_es = RichTextField()
+    description_en = RichTextField()
+    pub_date = models.DateTimeField('Created', editable=False, auto_now_add=True)
     def admin_image(self):
         return '<img style="height:100px; width: auto; display: block;" src="%s"/>' % self.mainImage.url
     admin_image.allow_tags = True

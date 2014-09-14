@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'ckeditor',
     'collectfast',
+    'portfolio',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -61,6 +62,11 @@ ROOT_URLCONF = 'ASP.urls'
 
 WSGI_APPLICATION = 'ASP.wsgi.application'
 
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
+
+TEMPLATE_CONTEXT_PROCESSORS = TCP + (
+    'portfolio.context_processors.menu',
+)
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases

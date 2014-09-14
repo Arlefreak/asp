@@ -20,22 +20,31 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '_s@puvk+)05voc$n*xse1wp7b38mc@_4vaeq+8#88h3n3e*4(x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', False)
+#DEBUG = False
+TEMPLATE_DEBUG = DEBUG
 
-TEMPLATE_DEBUG = True
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'asp.herokuapp.com',
+    'smtp.gmail.com',
+    'aspsite.s3.amazonaws.com']
 
 
 # Application definition
 
 INSTALLED_APPS = (
+    'django_admin_bootstrapped.bootstrap3',
+    'django_admin_bootstrapped',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
+    'collectfast',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -58,8 +67,13 @@ WSGI_APPLICATION = 'ASP.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'dkg3a5kp14qh0',                      # Or path to database file if using sqlite3.
+        'USER': 'nrtyeidjtprifm',
+        'PASSWORD': 'ppxS0dRM24fc8oa7KyEk5TBDfE',
+        'HOST': 'ec2-54-225-168-181.compute-1.amazonaws.com',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '5432', 
+
     }
 }
 
@@ -80,4 +94,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-STATIC_URL = '/static/'
+if DEBUG:
+    COLLECTFAST_ENABLED = False
+    PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
+    STATIC_ROOT = 'staticfiles'
+    STATIC_URL = '/static/'
+    CKEDITOR_UPLOAD_PATH = STATIC_URL + 'uploads/'
+else:
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID',False)
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY',False)
+    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME',False)
+    AWS_STORAGE_BUCKET_NAME = 'ixayasite'
+    AWS_QUERYSTRING_AUTH = False
+    AWS_PRELOAD_METADATA = True
+    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
+    ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+    COLLECTFAST_ENABLED = True
+    CKEDITOR_UPLOAD_PATH = STATIC_URL + 'uploads/'

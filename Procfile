@@ -1,1 +1,1 @@
-web: gunicorn Ixaya.wsgi -b 0.0.0.0:$PORT
+web: gunicorn ASP.wsgi -b 0.0.0.0:$PORT

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% block bodyID %}about{% endblock %}
+{% block content %}
+<section>
+    <img id="aboutImg" src="http://lorempixel.com/720/480" alt="">
+    <article>
+        <header>
+            <h2>
+                <img src="{% static "img/about.svg"%}" alt="">
+            </h2>
+        </header>
+        <p>
+            Leniminit que derovid et acest quia aut omnim dem.
+            Itasint earum dit ma quae. Et eum landae omnime vo-
+            lum ernatur arcient utemquassit aut fugia porio ma sae 
+            remperchitat laut exere, ut fuga. Et landa siniscit miniet 
+            latis magnam, te corum etures ma nonet qui doluptat.<br>
+            Ignam quam dic temod quae prernat auditiis dolectis 
+            sit abores everem fugiatur? Quidenis reri sitesa asin-
+            ciaspis doloribusam que voluptaquunt alitas ides do-
+            luptas conseru mquationet, int harchil il inus doloresed 
+            mil moles expliquisque cus etus nos autem la periti 
+            vellam, ut prorrorerum res et, quidenis moloribus aut 
+            illaboreptur remqui blaborit que premporem. Ed mos 
+            accum que non re dolor aut vellam ipsam non eic tem 
+            raectaet lorem eur landae omnime laut exere, ut fugate.
+        </p>
+        <p id="aboutInfo">
+            contacto@a-sp.mx<br>
+            55 20 54 86<br>
+            Monte Athos 155 - RG.<br>
+            Lomas de Chapultepec<br>
+        </p>
+    </article>
+</section>
+{% endblock %}

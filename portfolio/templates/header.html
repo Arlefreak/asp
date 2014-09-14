@@ -1,0 +1,22 @@
+{% load static from staticfiles %}
+<header id="header" class="">
+    <div class="wrapper">
+        <a id="logo" href="{% url 'home' %}" title="">
+            <img src="{% static "img/logoHeader.svg"%}" alt="logo">
+        </a>
+        <img id="menu" src="{% static "img/menu.svg"%}" alt="menu">
+        <nav>
+            <ul id="navMenu">
+                {% for page in menu %}
+                <li>
+                    <a {% if page.active %} class="active"{% endif %} href="{{page.url}}" name={{page.name}}>{{page.name}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+            <ul id="lanMenu">
+                <li><a href="" title="">EN</a>&nbsp/&nbsp</li>
+                <li><a href="" title="">ES</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>

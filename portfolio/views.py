@@ -11,10 +11,11 @@ def home(request):
     return render(request, 'index.html', context)
 
 def about(request):
-    info = singleInformation.objects.all()
+    info = SingleInformation.objects.filter(published=True)
     if len(info) > 0:
         info = info[0]
-    info = {}
+    else:
+        info = {}
     context = {"info": info}
     return render(request, 'about.html', context)
 
@@ -24,7 +25,7 @@ def press(request):
     return render(request, 'press.html', context)
 
 def proyects(request):
-	p_list = Proyect.objects.all()
+	p_list = Proyect.objects.filter(published=True)
 	context = {"p_list": p_list}
 	return render(request, 'proyects.html', context)
 

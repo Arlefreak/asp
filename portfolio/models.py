@@ -75,7 +75,7 @@ class Image(models.Model):
     def __unicode__(self):
         return self.name
 
-class singleInformation(models.Model):
+class SingleInformation(models.Model):
     aboutImage = models.ImageField('Imagen about', upload_to = upload_image_to,null = False, blank = False)
     aboutText_es = RichTextField()
     aboutText_en = RichTextField()

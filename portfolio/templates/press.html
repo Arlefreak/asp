@@ -1,53 +1,25 @@
 {% extends 'base.html' %}
 {% block bodyID %}press{% endblock %}
 {% block content %}
+{% for press in p_list %}
 <section>
-    <img id="aboutImg" src="http://lorempixel.com/549/380" alt="">
+    <img id="aboutImg" src="{{press.mainImage.url}}" alt="{{press.name_es}}">
     <article>
         <header>
             <h2>
-                Arquine No. 67
+                {% if LANGUAGE_CODE == "en" %}
+                {{press.name_en}}
+                {% else %}
+                {{press.name_es}}
+                {% endif %}
             </h2>
         </header>
-        <p>
-            Ficidi tor mo id ma qui omnima dicipit atiaepudit et quo 
-            estem debis adiate odis doluptaspe moloremo iumquid 
-            utaturi onseque iligeni scidigent est vit fugiae natur res-
-            temped ut autecul laudige nihillore landaeculpa acerit 
-            aut ut aliquid quo volor adicienis dolum que porestiisto 
-            omnimolupta quaepro restiur iasitat incta sequiaec-
-            to bea cum faccum autate cum el ipsunt, net doluptas 
-            et et, con cum, nisimaion repernatet adicias sedisin 
-            nimod mosam abo. Pedit velenda ndipsapis nobis pli-
-            tinctia vent eum fugit expliti iur, aut de res et asperupit
-            pra quo quam, volorum quo ium ipsum facimillum in
-            eumqui blanden iscieniam, et hiciissin nonecestrum.
-        </p>
+        {% if LANGUAGE_CODE == "en" %}
+        {{press.description_en | safe}}
+        {% else %}
+        {{press.description_es | safe}}
+        {% endif %}
     </article>
 </section>
-<div class="clearfix"></div>
-<section>
-    <img id="aboutImg" src="http://lorempixel.com/549/380" alt="">
-    <article>
-        <header>
-            <h2>
-                Arquine No. 67
-            </h2>
-        </header>
-        <p>
-            Ficidi tor mo id ma qui omnima dicipit atiaepudit et quo 
-            estem debis adiate odis doluptaspe moloremo iumquid 
-            utaturi onseque iligeni scidigent est vit fugiae natur res-
-            temped ut autecul laudige nihillore landaeculpa acerit 
-            aut ut aliquid quo volor adicienis dolum que porestiisto 
-            omnimolupta quaepro restiur iasitat incta sequiaec-
-            to bea cum faccum autate cum el ipsunt, net doluptas 
-            et et, con cum, nisimaion repernatet adicias sedisin 
-            nimod mosam abo. Pedit velenda ndipsapis nobis pli-
-            tinctia vent eum fugit expliti iur, aut de res et asperupit
-            pra quo quam, volorum quo ium ipsum facimillum in
-            eumqui blanden iscieniam, et hiciissin nonecestrum.
-        </p>
-    </article>
-</section>
+{% endfor %}
 {% endblock %}

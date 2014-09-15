@@ -25,7 +25,7 @@ class pressAdmin(admin.ModelAdmin):
 	list_display_links = ('name_es', 'admin_image', 'description_es', 'pub_date')
 	ordering = ('pub_date',)
 
-admin.site.register(singleInformation, singleInformationAdmin)
+admin.site.register(SingleInformation, singleInformationAdmin)
 admin.site.register(Proyect, proyectAdmin)
 admin.site.register(Image, imageAdmin)
 admin.site.register(Press, pressAdmin)

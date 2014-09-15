@@ -2,112 +2,25 @@
 {% block bodyID %}content{% endblock %}
 {% block content %}
 <section>
+    {% for proyect in p_list %}
     <article>
-        <a href="single.html" title="" class=""></a>
+        <a
+            href="{% url 'singleProyect' proyect.slug %}"
+            title="{{proyect.name_es}}"
+            class="{{proyect.imageOrientation}}"
+            style="background: url("http://lorempixel.com/g/2903/253");"
+        ></a>
         <span>
-            Palacio de Gobierno<br>
-            Guadalajara<br>
-            2003-2007<br>
+            {% if LANGUAGE_CODE == "en" %}
+                {{proyect.name_en}}
+                {% else %}
+                {{proyect.name_es}}
+                {% endif %}
+                <br>
+            {{proyect.location}}<br>
+            {{proyect.date}}<br>
         </span>
     </article>
-
-    <article>
-        <a href="single.html" title="" class="up"></a>
-        <span>
-            Palacio de Gobierno<br>
-            Guadalajara<br>
-            2003-2007<br>
-        </span>
-    </article>
-
-    <article>
-        <a href="single.html" title="" class="left"></a>
-        <span>
-            Palacio de Gobierno<br>
-            Guadalajara<br>
-            2003-2007<br>
-        </span>
-    </article>
-
-    <article>
-        <a href="single.html" title="" class="down"></a>
-        <span>
-            Palacio de Gobierno<br>
-            Guadalajara<br>
-            2003-2007<br>
-        </span>
-    </article>
-
-    <article>
-        <a href="single.html" title="" class="right"></a>
-        <span>
-            Palacio de Gobierno<br>
-            Guadalajara<br>
-            2003-2007<br>
-        </span>
-    </article>
-
-    <article>
-        <a href="single.html" title="" class=""></a>
-        <span>
-            Palacio de Gobierno<br>
-            Guadalajara<br>
-            2003-2007<br>
-        </span>
-    </article>
-
-    <article>
-        <a href="single.html" title="" class="up"></a>
-        <span>
-            Palacio de Gobierno<br>
-            Guadalajara<br>
-            2003-2007<br>
-        </span>
-    </article>
-
-    <article>
-        <a href="single.html" title="" class="left"></a>
-        <span>
-            Palacio de Gobierno<br>
-            Guadalajara<br>
-            2003-2007<br>
-        </span>
-    </article>
-
-    <article>
-        <a href="single.html" title="" class="down"></a>
-        <span>
-            Palacio de Gobierno<br>
-            Guadalajara<br>
-            2003-2007<br>
-        </span>
-    </article>
-
-    <article>
-        <a href="single.html" title="" class="right"></a>
-        <span>
-            Palacio de Gobierno<br>
-            Guadalajara<br>
-            2003-2007<br>
-        </span>
-    </article>
-
-    <article>
-        <a href="single.html" title="" class=""></a>
-        <span>
-            Palacio de Gobierno<br>
-            Guadalajara<br>
-            2003-2007<br>
-        </span>
-    </article>
-
-    <article>
-        <a href="single.html" title="" class="up"></a>
-        <span>
-            Palacio de Gobierno<br>
-            Guadalajara<br>
-            2003-2007<br>
-        </span>
-    </article>
+    {% endfor %}
 </section>
 {% endblock %}

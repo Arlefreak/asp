@@ -1,11 +1,11 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, include, url, i18n
 from django.contrib import admin
 from django.views.generic import TemplateView
 
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
+    url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^ckeditor/', include('ckeditor.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'portfolio.views.home', name='home'),

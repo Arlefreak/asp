@@ -3,7 +3,6 @@ __author__ = 'marioc'
 from django.core.urlresolvers import reverse
 
 def menu(request):
-    print("fi")
     menu = {"menu": [
         {'name': 'About', 'url': reverse('about')},
         {'name': 'Proyects', 'url': reverse('proyects')},

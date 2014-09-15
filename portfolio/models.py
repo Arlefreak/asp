@@ -25,7 +25,7 @@ class Proyect(models.Model):
     mainImage =  models.ImageField('Main Image', upload_to=upload_image_to, blank=False)
     mainImageBW = ImageSpecField(
                                     source='mainImage',
-                                    processors=[Adjust(color=0.5)],
+                                    processors=[Adjust(color=0.0)],
                                     format='JPEG',
                                     options={'quality': 100})
     secondImage =  models.ImageField('Second Image', upload_to=upload_image_to, blank=True)

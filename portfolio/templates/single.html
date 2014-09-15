@@ -1,102 +1,29 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
-    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
-</head>
-<body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-            <![endif]-->
-            <header id="header" class="">
-                <div class="wrapper">
-                    <a id="logo" href="index.html" title="">
-                        <img src="img/logoHeader.svg" alt="logo">
-                    </a>
-                    <img id="menu" src="img/menu.svg" alt="menu">
-                    <nav>
-                        <ul id="navMenu">
-                            <li><a href="about.html" title="">About</a>&nbsp</li>
-                            <li><a href="proyects.html" title="" class="active">Proyectos</a> &nbsp</li>
-                            <li><a href="press.html" title="">Prensa</a></li>
-                        </ul>
-                        <ul id="lanMenu">
-                            <li><a href="" title="">EN</a>&nbsp/&nbsp</li>
-                            <li><a href="" title="">ES</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </header>
-            <div class="wrapper" id="single">
-                <section class="singleCover">
-                    <img class="singleImg" src="http://lorempixel.com/720/480" alt="">
-                    <article>
-                        <header>
-                            <h2>
-                                Titulo de proyecto
-                            </h2>
-                        </header>
-                        <p>
-                            Leniminit que derovid et acest quia aut omnim dem.
-                            Itasint earum dit ma quae. Et eum landae omnime vo-
-                            lum ernatur arcient utemquassit aut fugia porio ma sae 
-                            remperchitat laut exere, ut fuga. Et landa siniscit miniet 
-                            latis magnam, te corum etures ma nonet qui doluptat.<br>
-                            Ignam quam dic temod quae prernat auditiis dolectis 
-                            sit abores everem fugiatur? Quidenis reri sitesa asin-
-                            ciaspis doloribusam que voluptaquunt alitas ides do-
-                            luptas conseru mquationet, int harchil il inus doloresed 
-                            mil moles expliquisque cus etus nos autem la periti 
-                            vellam, ut prorrorerum res et, quidenis moloribus aut 
-                            illaboreptur remqui blaborit que premporem. Ed mos 
-                            accum que non re dolor aut vellam ipsam non eic tem 
-                            raectaet lorem eur landae omnime laut exere, ut fugate.
-                        </p>
-                        <p class="singleInfo">
-                            ubicación<br>
-                            año<br>
-                        </p>
-                    </article>
-                </section>
-                <div class="clearfix"></div>
-                <section class="gallery">
-                    <img class="fullImage" src="http://lorempixel.com/720/480" alt="">
-                    <img class="leftImage" src="http://lorempixel.com/720/480" alt="">
-                    <img class="rightImage" src="http://lorempixel.com/720/480" alt="">
-                    <img class="centerImage" src="http://lorempixel.com/720/480" alt="">
-                    <img class="fullImage" src="http://lorempixel.com/720/480" alt="">
-                    <img class="leftImage" src="http://lorempixel.com/720/480" alt="">
-                    <img class="fullImage" src="http://lorempixel.com/720/480" alt="">
-                    <img class="rightImage" src="http://lorempixel.com/720/480" alt="">
-                </section>
-            </div>
-            <footer id="footer">
-                <div class="wrapper">
-                    <img src="img/logoFooter.svg" alt="Kiwi standing on oval">
-                </div>
-            </footer>
-            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
-            <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.js"><\/script>')</script>
-
-            <script src="script.js"></script>
-
-            <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-            <script>
-                (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-                    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-                e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-                e.src='http://www.google-analytics.com/analytics.js';
-                r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-                ga('create','UA-XXXXX-X');ga('send','pageview');
-            </script>
-        </body>
-        </html>
+{% extends 'base.html' %}
+{% block bodyID %}single{% endblock %}
+{% block content %}
+<section class="singleCover">
+    <img class="singleImg" src="{{proyect.mainImage.url}}" alt="">
+    <article>
+        <header>
+            <h2>
+                {% if LANGUAGE_CODE == "en" %}
+                    {{proyect.name_en}}
+                {% else %}
+                    {{proyect.name_es}}
+                {% endif %}
+            </h2>
+        </header>
+         {{proyect.description_es | safe}}
+        <p class="singleInfo">
+            {{proyect.location}}<br>
+            {{proyect.date}}<br>
+        </p>
+    </article>
+</section>
+<div class="clearfix"></div>
+<section class="gallery">
+    {% for image in proyect.getGallery  %}
+        <img class="{{image.imageOrientation}}" src="{{image.image.url}}" alt="">
+    {% endfor %}
+</section>
+{% endblock %}

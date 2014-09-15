@@ -55,14 +55,14 @@ class Proyect(models.Model):
         verbose_name = 'Proyect'
         verbose_name_plural = 'Proyects'
     def getGallery(self):
-        s = Image.objects.filter(proyect=self, img_type='gal')
+        s = Image.objects.filter(proyect=self)
         return s
 
 class Image(models.Model):
     idImage = models.AutoField(primary_key=True)
     name = models.CharField('Name', max_length=100, blank=True)
     image =  models.ImageField('Image', upload_to=upload_image_to, blank=True, null=True)
-    imageOrientationOpts =  (('left', 'left'), ('rigt', 'right'), ('up', 'up'), ('down', 'down'), ('cntr', 'center'), ('covr', 'cover'))
+    imageOrientationOpts =  (('left', 'left'), ('rigt', 'right'), ('cntr', 'center'), ('covr', 'cover'))
     imageOrientation = models.CharField('Tipo', max_length=4, choices=imageOrientationOpts, default='covr')
     proyect = models.ForeignKey('Proyect')
     def admin_image(self):

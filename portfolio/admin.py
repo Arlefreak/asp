@@ -9,7 +9,7 @@ class singleInformationAdmin(admin.ModelAdmin):
 
 class proyectAdmin(admin.ModelAdmin):
 	fields = ['name_es', 'name_en', 'location', 'date','description_es', 'description_en', 'mainImage', 'secondImage', 'imageOrientation', 'published']
-	list_display = ('name_es', 'description_es', 'admin_image', 'imageOrientation', 'published', 'pub_date')
+	list_display = ('name_es', 'description_es', 'admin_image', 'second_image', 'imageOrientation', 'published', 'pub_date')
 	list_display_links = ('name_es', 'description_es', 'admin_image', 'pub_date')
 	list_editable = ('imageOrientation', 'published')
 	ordering = ('pub_date',)

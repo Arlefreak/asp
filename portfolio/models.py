@@ -3,7 +3,8 @@ from django.template import defaultfilters
 import os
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
-
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill, Adjust
 
 def upload_image_to(instance, filename):
         from django.utils.timezone import now
@@ -22,21 +23,34 @@ class Proyect(models.Model):
     description_en = RichTextField()
     pub_date = models.DateTimeField('Created', editable=False, auto_now_add=True)
     mainImage =  models.ImageField('Main Image', upload_to=upload_image_to, blank=False)
+    mainImageBW = ImageSpecField(
+                                    source='mainImage',
+                                    processors=[Adjust(color=0.5)],
+                                    format='JPEG',
+                                    options={'quality': 100})
     secondImage =  models.ImageField('Second Image', upload_to=upload_image_to, blank=True)
     imageOrientationOpts =  (('left', 'left'), ('rigt', 'right'), ('up', 'up'), ('down', 'down'), ('cntr', 'center'))
     imageOrientation = models.CharField('Alignment', max_length=4, choices=imageOrientationOpts, default='cntr')
     published = models.BooleanField('Published',default=False)
     slug = models.SlugField('Slug Name', max_length=100)
     def save(self, *args, **kwargs):
-        self.slug = defaultfilters.slugify(self.name)
+        self.slug = defaultfilters.slugify(self.name_es)
         super(Proyect, self).save(*args, **kwargs)
 
     def admin_image(self):
         return '<img style="height:100px; width: auto; display: block;" src="%s"/>' % self.mainImage.url
     admin_image.allow_tags = True
 
+    def second_image(self):
+        if self.secondImage:
+            img = self.secondImage
+        else:
+            img = self.mainImageBW
+        return '<img style="height:100px; width: auto; display: block;" src="%s"/>' % img.url
+    second_image.allow_tags = True
+
     def __unicode__(self):  # Python 3: def __str__(self):
-        return self.name
+        return self.name_es
     class Meta:
         verbose_name = 'Proyect'
         verbose_name_plural = 'Proyects'

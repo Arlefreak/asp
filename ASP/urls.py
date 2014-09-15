@@ -6,6 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
+    url(r'^ckeditor/', include('ckeditor.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'portfolio.views.home', name='home'),
     url(r'^about/', 'portfolio.views.about', name='about'),

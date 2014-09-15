@@ -14,15 +14,17 @@ def upload_image_to(instance, filename):
             filename_ext.lower(),)
 
 class Proyect(models.Model):
-    name_es = models.CharField('Name', max_length=140)
-    name_en = models.CharField('Name', max_length=140)
+    name_es = models.CharField('Name spanish', max_length=140, null=False, blank=False)
+    name_en = models.CharField('Name english', max_length=140, null=True, blank=True)
+    location = models.CharField('Location', max_length=140, null=True, blank=True)
+    date = models.CharField('Fechas', max_length=140, null=True, blank=True)
     description_es = RichTextField()
     description_en = RichTextField()
     pub_date = models.DateTimeField('Created', editable=False, auto_now_add=True)
     mainImage =  models.ImageField('Main Image', upload_to=upload_image_to, blank=False)
     secondImage =  models.ImageField('Second Image', upload_to=upload_image_to, blank=True)
     imageOrientationOpts =  (('left', 'left'), ('rigt', 'right'), ('up', 'up'), ('down', 'down'), ('cntr', 'center'))
-    imageOrientation = models.CharField('Tipo', max_length=4, choices=imageOrientationOpts, default='cntr')
+    imageOrientation = models.CharField('Alignment', max_length=4, choices=imageOrientationOpts, default='cntr')
     published = models.BooleanField('Published',default=False)
     slug = models.SlugField('Slug Name', max_length=100)
     def save(self, *args, **kwargs):
@@ -44,8 +46,8 @@ class Proyect(models.Model):
 
 class Image(models.Model):
     idImage = models.AutoField(primary_key=True)
-    name = models.CharField('Nombre', max_length=100, blank=True)
-    image =  models.ImageField('Imagen', upload_to=upload_image_to, blank=True, null=True)
+    name = models.CharField('Name', max_length=100, blank=True)
+    image =  models.ImageField('Image', upload_to=upload_image_to, blank=True, null=True)
     imageOrientationOpts =  (('left', 'left'), ('rigt', 'right'), ('up', 'up'), ('down', 'down'), ('cntr', 'center'), ('covr', 'cover'))
     imageOrientation = models.CharField('Tipo', max_length=4, choices=imageOrientationOpts, default='covr')
     proyect = models.ForeignKey('Proyect')
@@ -67,7 +69,7 @@ class singleInformation(models.Model):
     line2 = models.CharField('linea 2', max_length=140, null=True, blank=True)
     line3 = models.CharField('linea 3', max_length=140, null=True, blank=True)
     line4 = models.CharField('linea 4', max_length=140, null=True, blank=True)
-    published = models.BooleanField('Publicado', default = False)
+    published = models.BooleanField('Published', default = False)
     def save(self, *args, **kwargs):
         if self.published:
             try:
@@ -86,9 +88,9 @@ class singleInformation(models.Model):
         verbose_name_plural = "About"
 
 class Press(models.Model):
-    name_es = models.CharField(max_length=140, null=False, blank=False)
-    name_en = models.CharField(max_length=140, null=False, blank=False)
-    mainImage = models.ImageField('Imagen principal', upload_to = upload_image_to,null = False, blank = False)
+    name_es = models.CharField('Name spanish',max_length=140, null=False, blank=False)
+    name_en = models.CharField('Name english',max_length=140, null=False, blank=False)
+    mainImage = models.ImageField('Main image', upload_to = upload_image_to,null = False, blank = False)
     description_es = RichTextField()
     description_en = RichTextField()
     pub_date = models.DateTimeField('Created', editable=False, auto_now_add=True)

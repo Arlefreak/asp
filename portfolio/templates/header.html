@@ -13,11 +13,16 @@
                 </li>
                 {% endfor %}
             </ul>
-            <form id="lanMenu" action="/i18n/setlang/" method="post">
+            <div id="lanMenu">
+                <form  action="/i18n/setlang/" method="post">
                 {% csrf_token %}
-                <button name="language" value="en" type="submit" {% if LANGUAGE_CODE == "en" %} class="active"{% endif %}>EN</button>&nbsp/&nbsp
-                <button name="language" value="es-mx" type="submit" {% if LANGUAGE_CODE == "es-mx" %} class="active"{% endif %}>ES</button>
-            </form>
+                    <button name="language" value="en" type="submit" {% if LANGUAGE_CODE == "en" %} class="active"{% endif %}>EN</button>&nbsp/&nbsp
+                </form>
+                <form action="/i18n/setlang/" method="post">
+                {% csrf_token %}
+                    <button name="language" value="es-mx" type="submit" {% if LANGUAGE_CODE == "es-mx" %} class="active"{% endif %}>ES</button>
+                </form>
+            </div>
         </nav>
     </div>
 </header>

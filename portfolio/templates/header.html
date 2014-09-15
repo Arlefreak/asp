@@ -20,7 +20,7 @@
                 </form>
                 <form action="/i18n/setlang/" method="post">
                 {% csrf_token %}
-                    <button name="language" value="es-mx" type="submit" {% if LANGUAGE_CODE == "es-mx" %} class="active"{% endif %}>ES</button>
+                    <button name="language" value="es-Mx" type="submit" {% if LANGUAGE_CODE == "es-mx" %} class="active"{% endif %}>ES</button>
                 </form>
             </div>
         </nav>

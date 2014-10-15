@@ -65,9 +65,57 @@ class Image(models.Model):
     image =  models.ImageField('Image', upload_to=upload_image_to, blank=True, null=True)
     imageOrientationOpts =  (('left', 'left'), ('rigt', 'right'), ('cntr', 'center'), ('covr', 'cover'))
     imageOrientation = models.CharField('Tipo', max_length=4, choices=imageOrientationOpts, default='covr')
+    imageEffectsOptions = (('no','None'),('bw', 'Black & white'), ('one', 'Effect 1'), ('two', 'Effect 2'), ('tre', 'Effect 3'))
+    imageEffect = models.CharField('Effect', max_length=4, choices=imageEffectsOptions, default='bw')
+    blackWhite = ImageSpecField(
+        source='image',
+        processors=[Adjust(color=0.0)],
+        format='JPEG',
+        options={'quality': 100})
+    effectOne = ImageSpecField(
+        source='image',
+        processors=[Adjust(brightness=1.45,contrast=1.10,color=0.45)],
+        format='JPEG',
+        options={'quality': 100})
+    effectTwo = ImageSpecField(
+        source='image',
+         processors=[Adjust(brightness=0.85,contrast=1.30,color=0.45)],
+        format='JPEG',
+        options={'quality': 100})
+    effectThree = ImageSpecField(
+        source='image',
+        processors=[Adjust(brightness=0.85,contrast=1.25,color=1.20)],
+        format='JPEG',
+        options={'quality': 100})
     proyect = models.ForeignKey('Proyect')
+    def imageWithEffect(self):
+        if self.imageEffect == 'no':
+            tmpImg = self.image.url
+        elif self.imageEffect == 'bw':
+            tmpImg = self.blackWhite.url
+        elif self.imageEffect == 'one':
+            tmpImg = self.effectOne.url
+        elif self.imageEffect == 'two':
+            tmpImg = self.effectTwo.url
+        elif self.imageEffect == 'tre':
+            tmpImg = self.effectThree.url
+        else:
+            tmpImg = self.image.url
+        return tmpImg
     def admin_image(self):
-        return '<img style="height:100px; width: auto; display: block;" src="%s"/>' % str(self.blob.url)
+        if self.imageEffect == 'no':
+            tmpImg = self.image.url
+        elif self.imageEffect == 'bw':
+            tmpImg = self.blackWhite.url
+        elif self.imageEffect == 'one':
+            tmpImg = self.effectOne.url
+        elif self.imageEffect == 'two':
+            tmpImg = self.effectTwo.url
+        elif self.imageEffect == 'tre':
+            tmpImg = self.effectThree.url
+        else:
+            tmpImg = self.image.url
+        return '<img style="height:100px; width: auto; display: block;" src="%s"/>' % tmpImg
     admin_image.allow_tags = True
     class Meta:
         verbose_name = 'Imagen'

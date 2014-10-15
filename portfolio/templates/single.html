@@ -23,7 +23,7 @@
 <div class="clearfix"></div>
 <section class="gallery">
     {% for image in proyect.getGallery  %}
-        <img class="{{image.imageOrientation}}" src="{{image.image.url}}" alt="">
+        <img class="{{image.imageOrientation}}" src="{{image.imageWithEffect}}" alt="">
     {% endfor %}
 </section>
 {% endblock %}

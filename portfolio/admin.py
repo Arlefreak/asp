@@ -15,9 +15,9 @@ class proyectAdmin(admin.ModelAdmin):
 	ordering = ('pub_date',)
 
 class imageAdmin(admin.ModelAdmin):
-	list_display = ('name', 'admin_image', 'imageOrientation', 'proyect')
+	list_display = ('name', 'admin_image', 'imageOrientation', 'proyect', 'imageEffect' )
 	list_display_links = ('name', 'admin_image', 'proyect')
-	list_editable = ('imageOrientation',)
+	list_editable = ('imageOrientation', 'imageEffect', )
 	ordering = ('proyect',)
 
 class pressAdmin(admin.ModelAdmin):

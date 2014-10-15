@@ -28,6 +28,8 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     'asp.herokuapp.com',
+    'a-sp.mx',
+    'www.a-sp.mx',
     'smtp.gmail.com',
     'aspsite.s3.amazonaws.com']
 

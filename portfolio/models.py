@@ -24,10 +24,10 @@ class Proyect(models.Model):
     pub_date = models.DateTimeField('Created', editable=False, auto_now_add=True)
     mainImage =  models.ImageField('Main Image', upload_to=upload_image_to, blank=False)
     mainImageBW = ImageSpecField(
-                                    source='mainImage',
-                                    processors=[Adjust(color=0.0)],
-                                    format='JPEG',
-                                    options={'quality': 100})
+                    source='mainImage',
+                    processors=[Adjust(color=0.0)],
+                    format='JPEG',
+                    options={'quality': 100})
     secondImage =  models.ImageField('Second Image', upload_to=upload_image_to, blank=True)
     imageOrientationOpts =  (('left', 'left'), ('rigt', 'right'), ('up', 'up'), ('down', 'down'), ('cntr', 'center'))
     imageOrientation = models.CharField('Alignment', max_length=4, choices=imageOrientationOpts, default='cntr')

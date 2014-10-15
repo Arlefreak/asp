@@ -31,7 +31,8 @@ class Proyect(models.Model):
     secondImage =  models.ImageField('Second Image', upload_to=upload_image_to, blank=True)
     imageOrientationOpts =  (('left', 'left'), ('rigt', 'right'), ('up', 'up'), ('down', 'down'), ('cntr', 'center'))
     imageOrientation = models.CharField('Alignment', max_length=4, choices=imageOrientationOpts, default='cntr')
-    published = models.BooleanField('Published',default=False)
+    home = models.BooleanField('Home',default=False)
+    proyects = models.BooleanField('Proyects',default=False)
     slug = models.SlugField('Slug Name', max_length=100)
     def save(self, *args, **kwargs):
         self.slug = defaultfilters.slugify(self.name_es)

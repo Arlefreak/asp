@@ -8,10 +8,10 @@ class singleInformationAdmin(admin.ModelAdmin):
 	ordering = ('id',)
 
 class proyectAdmin(admin.ModelAdmin):
-	fields = ['name_es', 'name_en', 'location', 'date','description_es', 'description_en', 'mainImage', 'secondImage', 'imageOrientation', 'published']
-	list_display = ('name_es', 'description_es', 'admin_image', 'second_image', 'imageOrientation', 'published', 'pub_date')
+	fields = ['name_es', 'name_en', 'location', 'date','description_es', 'description_en', 'mainImage', 'secondImage', 'imageOrientation', 'home', 'proyects']
+	list_display = ('name_es', 'description_es', 'admin_image', 'second_image', 'imageOrientation', 'home', 'proyects', 'pub_date')
 	list_display_links = ('name_es', 'description_es', 'admin_image', 'pub_date')
-	list_editable = ('imageOrientation', 'published')
+	list_editable = ('imageOrientation', 'home', 'proyects')
 	ordering = ('pub_date',)
 
 class imageAdmin(admin.ModelAdmin):

@@ -136,13 +136,13 @@ class SingleInformation(models.Model):
     def save(self, *args, **kwargs):
         if self.published:
             try:
-                temp = singleInformation.objects.get(published=True)
+                temp = SingleInformation.objects.get(published=True)
                 if self != temp:
                     temp.published = False
                     temp.save()
-            except singleInformation.DoesNotExist:
+            except SingleInformation.DoesNotExist:
                 pass
-        super(singleInformation, self).save(*args, **kwargs)
+        super(SingleInformation, self).save(*args, **kwargs)
     def admin_Aboutimage(self):
         return '<img style="height:100px; width: auto; display: block;" src="%s"/>' % self.aboutImage.url
     admin_Aboutimage.allow_tags = True

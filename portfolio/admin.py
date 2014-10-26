@@ -1,6 +1,11 @@
 from django.contrib import admin
 from models import *
 # Register your models here.
+class ImageInline(admin.StackedInline):
+    model = Image
+    verbose_name_plural = 'Images'
+    extra = 1
+
 class singleInformationAdmin(admin.ModelAdmin):
 	list_display = ('admin_Aboutimage', 'aboutText_es', 'published',)
 	list_display_links = ('admin_Aboutimage', 'aboutText_es',)
@@ -12,12 +17,13 @@ class proyectAdmin(admin.ModelAdmin):
 	list_display = ('name_es', 'description_es', 'admin_image', 'second_image', 'imageOrientation', 'home', 'proyects', 'pub_date')
 	list_display_links = ('name_es', 'description_es', 'admin_image', 'pub_date')
 	list_editable = ('imageOrientation', 'home', 'proyects')
-	ordering = ('pub_date',)
+        inlines = [ImageInline]
+        ordering = ('pub_date',)
 
 class imageAdmin(admin.ModelAdmin):
-	list_display = ('name', 'admin_image', 'imageOrientation', 'proyect', 'imageEffect' )
+	list_display = ('name', 'admin_image', 'imageOrientation', 'proyect', 'imageEffect', 'order')
 	list_display_links = ('name', 'admin_image', 'proyect')
-	list_editable = ('imageOrientation', 'imageEffect', )
+	list_editable = ('imageOrientation', 'imageEffect', 'order')
 	ordering = ('proyect',)
 
 class pressAdmin(admin.ModelAdmin):

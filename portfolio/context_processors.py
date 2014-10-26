@@ -1,12 +1,13 @@
 __author__ = 'marioc'
 # -*- coding: utf-8 -*-
+from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
 
 def menu(request):
     menu = {"menu": [
         {'name': 'About', 'url': reverse('about')},
-        {'name': 'Proyects', 'url': reverse('proyects')},
-        {'name': 'Press', 'url': reverse('press')},
+        {'name': _('Proyectos'), 'url': reverse('proyects')},
+        {'name': _('Prensa'), 'url': reverse('press')},
     ]}
     for item in menu['menu']:
         if request.path == item['url']:

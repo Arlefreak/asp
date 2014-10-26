@@ -56,7 +56,7 @@ class Proyect(models.Model):
         verbose_name = 'Proyect'
         verbose_name_plural = 'Proyects'
     def getGallery(self):
-        s = Image.objects.filter(proyect=self)
+        s = Image.objects.filter(proyect=self).order_by('order')
         return s
 
 class Image(models.Model):
@@ -67,6 +67,7 @@ class Image(models.Model):
     imageOrientation = models.CharField('Tipo', max_length=4, choices=imageOrientationOpts, default='covr')
     imageEffectsOptions = (('no','None'),('bw', 'Black & white'), ('one', 'Effect 1'), ('two', 'Effect 2'), ('tre', 'Effect 3'))
     imageEffect = models.CharField('Effect', max_length=4, choices=imageEffectsOptions, default='bw')
+    order = models.PositiveSmallIntegerField('Order', blank=False,null=False,default=1)
     blackWhite = ImageSpecField(
         source='image',
         processors=[Adjust(color=0.0)],
@@ -120,7 +121,6 @@ class Image(models.Model):
     class Meta:
         verbose_name = 'Imagen'
         verbose_name_plural = 'Imagenes'
-
     def __unicode__(self):
         return self.name
 

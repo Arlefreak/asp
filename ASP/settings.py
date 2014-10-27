@@ -24,6 +24,7 @@ DEBUG = os.environ.get('DEBUG', False)
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
+ADMINS = (('Arlefreak','arlefreak@gmail.com'),)
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
@@ -133,3 +134,10 @@ else:
     ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
     COLLECTFAST_ENABLED = True
     CKEDITOR_UPLOAD_PATH = STATIC_URL + 'uploads/'
+
+#Email
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'arlefreak@gmail.com'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', False)
+EMAIL_PORT = 587

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static from staticfiles %}
 {% block references %}
 <meta property="og:url" content="http://www.a-sp.mx/proyect/{{proyect.slug}}" />
 <meta property="og:image" content="{{proyect.mainImage.url}}" />
@@ -6,7 +7,7 @@
 
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="ASP">
-<meta name="twitter:creator" content="ASP">
+<meta name="twitter:creator" content="potro01">
 <meta name="twitter:image:src" content="{{proyect.mainImage.url}}">
 <meta name="twitter:domain" content="http://www.a-sp.mx/">
 
@@ -44,12 +45,31 @@
             {{proyect.location}}<br>
             {{proyect.date}}<br>
         </p>
+        {% if proyect.socialText_en %}
+            <div class="social">
+                {% if LANGUAGE_CODE == "en" %}
+                <a href="https://www.facebook.com/sharer/sharer.php?u=URL" target="_blank">
+                    <img src={% static "img/facebook.svg"%} alt="social">
+                </a>
+                <a href="https://twitter.com/intent/tweet?url=URL&text={{proyect.socialText_en}}&via=potro01" target="_blank">
+                    <img src={% static "img/twitter.svg"%} alt="social">
+                </a>
+                {% else %}
+                <a href="https://www.facebook.com/sharer/sharer.php?u=URL" target="_blank">
+                    <img src={% static "img/facebook.svg"%} alt="social">
+                </a>
+                <a href="https://twitter.com/intent/tweet?url=URL&text={{proyect.socialText_es}}&via=potro01" target="_blank">
+                    <img src={% static "img/twitter.svg"%} alt="social">
+                </a>
+                {% endif %}
+            </div>
+        {% endif %}
     </article>
 </section>
 <div class="clearfix"></div>
 <section class="gallery">
     {% for image in proyect.getGallery  %}
-    <img class="{{image.imageOrientation}}" src="{{image.imageWithEffect}}" alt="">
+    <img class="{{image.imageOrientation}}" src="{{image.imageWithEffect}}" alt="{{image.name}}">
     {% endfor %}
 </section>
 {% endblock %}

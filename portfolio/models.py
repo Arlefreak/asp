@@ -65,7 +65,7 @@ class Proyect(models.Model):
 class Image(models.Model):
     idImage = models.AutoField(primary_key=True)
     name = models.CharField('Name', max_length=100, blank=True)
-    image =  models.ImageField('Image', upload_to=upload_image_to, blank=True, null=True)
+    image =  models.ImageField('Image', upload_to=upload_image_to, blank=False, null=False)
     imageOrientationOpts =  (('left', 'left'), ('rigt', 'right'), ('cntr', 'center'), ('covr', 'cover'))
     imageOrientation = models.CharField('Tipo', max_length=4, choices=imageOrientationOpts, default='covr')
     imageEffectsOptions = (('no','None'),('bw', 'Black & white'), ('one', 'Effect 1'), ('two', 'Effect 2'), ('tre', 'Effect 3'))

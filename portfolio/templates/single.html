@@ -1,4 +1,30 @@
 {% extends 'base.html' %}
+{% block references %}
+<meta property="og:url" content="http://www.a-sp.mx/proyect/{{proyect.slug}}" />
+<meta property="og:image" content="{{proyect.mainImage.url}}" />
+<meta property="og:site_name" content="ASP" />
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="ASP">
+<meta name="twitter:creator" content="ASP">
+<meta name="twitter:image:src" content="{{proyect.mainImage.url}}">
+<meta name="twitter:domain" content="http://www.a-sp.mx/">
+
+{% if LANGUAGE_CODE == "en" %}
+<meta property="og:title" content="{{proyect.name_en}}" />
+<meta property="og:description" content="{{proyect.socialText_en}}" />
+
+<meta name="twitter:title" content="{{proyect.name_en}}">
+<meta name="twitter:description" content="{{proyect.socialText_en}}">
+
+{% else %}
+<meta property="og:title" content="{{proyect.name_es}}" />
+<meta property="og:description" content="{{proyect.socialText_es}}" />
+
+<meta name="twitter:title" content="{{proyect.name_es}}">
+<meta name="twitter:description" content="{{proyect.socialText_es}}">
+{% endif %}
+{% endblock %}
 {% block bodyID %}single{% endblock %}
 {% block content %}
 <section class="singleCover">
@@ -7,13 +33,13 @@
         <header>
             <h2>
                 {% if LANGUAGE_CODE == "en" %}
-                    {{proyect.name_en}}
+                {{proyect.name_en}}
                 {% else %}
-                    {{proyect.name_es}}
+                {{proyect.name_es}}
                 {% endif %}
             </h2>
         </header>
-         {{proyect.description_es | safe}}
+        {{proyect.description_es | safe}}
         <p class="singleInfo">
             {{proyect.location}}<br>
             {{proyect.date}}<br>
@@ -23,7 +49,7 @@
 <div class="clearfix"></div>
 <section class="gallery">
     {% for image in proyect.getGallery  %}
-        <img class="{{image.imageOrientation}}" src="{{image.imageWithEffect}}" alt="">
+    <img class="{{image.imageOrientation}}" src="{{image.imageWithEffect}}" alt="">
     {% endfor %}
 </section>
 {% endblock %}

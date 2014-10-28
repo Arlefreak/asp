@@ -27,14 +27,28 @@
     <link rel="icon" type="image/png" href="{% static "img/favicon-32x32.png"%}" sizes="32x32" />
     <link rel="icon" type="image/png" href="{% static "img/favicon-16x16.png"%}" sizes="16x16" />
     <link rel="icon" type="image/png" href="{% static "img/favicon-128.png"%}" sizes="128x128" />
-    <meta name="application-name" content="&nbsp;"/>
+    <meta name="application-name" content="ASP"/>
     <meta name="msapplication-TileColor" content="#ffffff" />
     <meta name="msapplication-TileImage" content="{% static "img/mstile-144x144.png"%}" />
     <meta name="msapplication-square70x70logo" content="{% static "img/mstile-70x70.png"%}" />
     <meta name="msapplication-square150x150logo" content="{% static "img/mstile-150x150.png"%}" />
     <meta name="msapplication-wide310x150logo" content="{% static "img/mstile-310x150.png"%}" />
     <meta name="msapplication-square310x310logo" content="{% static "img/mstile-310x310.png"%}" />
-    {% block references %}{% endblock %}
+    {% block references %}
+    <meta property="og:url" content="http://www.a-sp.mx/" />
+    <meta property="og:title" content="ASP" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="{% static "img/logoHeader.svg"%}" />
+    <meta property="og:site_name" content="ASP" />
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="ASP">
+    <meta name="twitter:title" content="ASP">
+    <meta name="twitter:description" content="ASP">
+    <meta name="twitter:creator" content="ASP">
+    <meta name="twitter:image:src" content="{% static "img/logoHeader.svg"%}">
+    <meta name="twitter:domain" content="http://www.a-sp.mx/">
+    {% endblock %}
 </head>
 <body >
     <!--[if lt IE 7]>

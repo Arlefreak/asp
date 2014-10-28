@@ -25,6 +25,7 @@ class imageAdmin(admin.ModelAdmin):
 	list_display_links = ('name', 'admin_image', 'proyect')
 	list_editable = ('imageOrientation', 'imageEffect', 'order')
 	ordering = ('proyect',)
+	list_filter = ('proyect',)
 
 class pressAdmin(admin.ModelAdmin):
 	list_display = ('name_es', 'admin_image', 'description_es', 'pub_date')

@@ -21,6 +21,8 @@ class Proyect(models.Model):
     date = models.CharField('Fechas', max_length=140, null=True, blank=True)
     description_es = RichTextField()
     description_en = RichTextField()
+    socialText_es = models.CharField('Social spanish', max_length=100, null=True, blank=True)
+    socialText_en = models.CharField('Social english', max_length=100, null=True, blank=True)
     pub_date = models.DateTimeField('Created', editable=False, auto_now_add=True)
     mainImage =  models.ImageField('Main Image', upload_to=upload_image_to, blank=False)
     mainImageBW = ImageSpecField(
@@ -34,6 +36,7 @@ class Proyect(models.Model):
     home = models.BooleanField('Home',default=False)
     proyects = models.BooleanField('Proyects',default=False)
     slug = models.SlugField('Slug Name', max_length=100)
+    order = models.PositiveSmallIntegerField('Order', blank=False,null=False,default=1)
     def save(self, *args, **kwargs):
         self.slug = defaultfilters.slugify(self.name_es)
         super(Proyect, self).save(*args, **kwargs)

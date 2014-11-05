@@ -40,7 +40,11 @@
                 {% endif %}
             </h2>
         </header>
-        {{proyect.description_es | safe}}
+                {% if LANGUAGE_CODE == "en" %}
+                {{proyect.description_en | safe}}
+                {% else %}
+                {{proyect.description_es | safe}}
+                {% endif %}
         <p class="singleInfo">
             {{proyect.location}}<br>
             {{proyect.date}}<br>

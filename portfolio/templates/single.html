@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static from staticfiles %}
+{% load embed_video_tags %}
 {% block references %}
 <meta property="og:url" content="http://www.a-sp.mx/proyect/{{proyect.slug}}" />
 <meta property="og:image" content="{{proyect.mainImage.url}}" />
@@ -73,7 +74,53 @@
 <div class="clearfix"></div>
 <section class="gallery">
     {% for image in proyect.getGallery  %}
-    <img class="{{image.imageOrientation}}" src="{{image.imageWithEffect}}" alt="{{image.name}}">
+        <img class="{{image.imageOrientation}}" src="{{image.imageWithEffect}}" alt="{{image.name}}">
     {% endfor %}
+    <div class="videoWrapper">
+        {% for i in proyect.getVideos  %}
+            {% video i.video 'medium' %}
+        {% endfor %}
+    </div>
 </section>
+{% endblock %}
+{% block FooterReferences %}
+<script>
+$(function() {
+var $allVideos = $("iframe[src^='http://player.vimeo.com'], iframe[src^='http://www.youtube.com']"),
+
+    // The element that is fluid width
+    $fluidEl = $(".videoWrapper");
+
+// Figure out and save aspect ratio for each video
+$allVideos.each(function() {
+
+  $(this)
+    .data('aspectRatio', this.height / this.width)
+
+    // and remove the hard coded width/height
+    .removeAttr('height')
+    .removeAttr('width');
+
+});
+
+// When the window is resized
+$(window).resize(function() {
+
+  var newWidth = $fluidEl.width();
+
+  // Resize all videos according to their own aspect ratio
+  $allVideos.each(function() {
+
+    var $el = $(this);
+    $el
+      .width(newWidth)
+      .height(newWidth * $el.data('aspectRatio'));
+
+  });
+
+// Kick off one resize to fix all videos on page load
+}).resize();
+
+});
+</script>
 {% endblock %}

@@ -1,9 +1,16 @@
 from django.contrib import admin
 from models import *
+from embed_video.admin import AdminVideoMixin
+
 # Register your models here.
 class ImageInline(admin.StackedInline):
     model = Image
     verbose_name_plural = 'Images'
+    extra = 1
+
+class VideoInline(admin.StackedInline):
+    model = Video
+    verbose_name_plural = 'Videos'
     extra = 1
 
 class singleInformationAdmin(admin.ModelAdmin):
@@ -17,7 +24,7 @@ class proyectAdmin(admin.ModelAdmin):
 	list_display = ('name_es', 'description_es', 'admin_image', 'second_image', 'imageOrientation', 'home', 'proyects', 'pub_date', 'order')
 	list_display_links = ('name_es', 'description_es', 'admin_image', 'pub_date')
 	list_editable = ('imageOrientation', 'home', 'proyects', 'order')
-        inlines = [ImageInline]
+        inlines = [ImageInline, VideoInline]
         ordering = ('pub_date',)
 
 class imageAdmin(admin.ModelAdmin):
@@ -32,7 +39,14 @@ class pressAdmin(admin.ModelAdmin):
 	list_display_links = ('name_es', 'admin_image', 'description_es', 'pub_date')
 	ordering = ('pub_date',)
 
+class videoAdmin(AdminVideoMixin, admin.ModelAdmin):
+	list_display = ('name', 'order', 'proyect')
+	list_display_links = ('name', 'proyect')
+	ordering = ('order',)
+	list_editable = ('order',)
+
 admin.site.register(SingleInformation, singleInformationAdmin)
 admin.site.register(Proyect, proyectAdmin)
 admin.site.register(Image, imageAdmin)
 admin.site.register(Press, pressAdmin)
+admin.site.register(Video, videoAdmin)

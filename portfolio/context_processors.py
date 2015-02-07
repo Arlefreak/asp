@@ -7,7 +7,8 @@ def menu(request):
     menu = {"menu": [
         {'name': 'About', 'url': reverse('about')},
         {'name': _('Proyectos'), 'url': reverse('proyects')},
-        {'name': _('Prensa'), 'url': reverse('press')},
+        {'name': _('Noticias'), 'url': reverse('press')},
+        {'name': _('Instagram'), 'url': "http://instagram.com/potro01/"},
     ]}
     for item in menu['menu']:
         if request.path == item['url']:

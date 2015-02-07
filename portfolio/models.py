@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill, Adjust
+from embed_video.fields import EmbedVideoField
 
 def upload_image_to(instance, filename):
         from django.utils.timezone import now
@@ -60,6 +61,9 @@ class Proyect(models.Model):
         verbose_name_plural = 'Proyects'
     def getGallery(self):
         s = Image.objects.filter(proyect=self).order_by('order')
+        return s
+    def getVideos(self):
+        s = Video.objects.filter(proyect=self).order_by('order')
         return s
 
 class Image(models.Model):
@@ -127,6 +131,17 @@ class Image(models.Model):
     def __unicode__(self):
         return self.name
 
+class Video(models.Model):
+    video = EmbedVideoField()
+    name = models.CharField('Name', max_length=100, blank=True)
+    order = models.PositiveSmallIntegerField('Order', blank=False,null=False,default=1)
+    proyect = models.ForeignKey('Proyect')
+    class Meta:
+        verbose_name = 'Video'
+        verbose_name_plural = 'Videos'
+    def __unicode__(self):
+        return self.name
+
 class SingleInformation(models.Model):
     aboutImage = models.ImageField('Imagen about', upload_to = upload_image_to,null = False, blank = False)
     aboutText_es = RichTextField()
@@ -157,6 +172,7 @@ class Press(models.Model):
     name_es = models.CharField('Name spanish',max_length=140, null=False, blank=False)
     name_en = models.CharField('Name english',max_length=140, null=False, blank=False)
     mainImage = models.ImageField('Main image', upload_to = upload_image_to,null = False, blank = False)
+    url = models.URLField('URL')
     description_es = RichTextField()
     description_en = RichTextField()
     pub_date = models.DateTimeField('Created', editable=False, auto_now_add=True)

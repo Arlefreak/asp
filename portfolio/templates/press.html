@@ -8,9 +8,13 @@
         <header>
             <h2>
                 {% if LANGUAGE_CODE == "en" %}
+                <a href="{{press.url}}" title="{{press.name_en}}">
                 {{press.name_en}}
+                </a>
                 {% else %}
+                <a href="{{press.url}}" title="{{press.name_es}}">
                 {{press.name_es}}
+                </a>
                 {% endif %}
             </h2>
         </header>

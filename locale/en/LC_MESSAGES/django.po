@@ -17,14 +17,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: portfolio/context_processors.py:9
-msgid "Proyectos"
-msgstr "Projects"
+#: ASP/settings.py:100
+msgid "Spanish"
+msgstr ""
 
-#: portfolio/context_processors.py:10
-msgid "Noticias"
-msgstr "News"
-
-#: portfolio/context_processors.py:11
-msgid "Instagram"
+#: ASP/settings.py:101
+msgid "English"
 msgstr ""

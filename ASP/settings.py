@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'ckeditor',
     'imagekit',
     'collectfast',
+    'embed_video',
     'portfolio',
 )
 
@@ -84,7 +85,7 @@ DATABASES = {
         'USER': 'nrtyeidjtprifm',
         'PASSWORD': 'ppxS0dRM24fc8oa7KyEk5TBDfE',
         'HOST': 'ec2-54-225-168-181.compute-1.amazonaws.com',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '5432', 
+        'PORT': '5432',
 
     }
 }

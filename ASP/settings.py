@@ -21,7 +21,7 @@ SECRET_KEY = 'x3*80$lqv0pxe&m8ccge-sv+-j7_%-t_x+d@f(a+!@43e8_*3l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', False)
-DEBUG = False
+#DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (('Arlefreak','arlefreak@gmail.com'),)
@@ -68,6 +68,7 @@ from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 
 TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'portfolio.context_processors.menu',
+    'django.core.context_processors.request',
 )
 
 ROOT_URLCONF = 'ASP.urls'

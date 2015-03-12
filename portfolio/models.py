@@ -180,5 +180,5 @@ class Press(models.Model):
         return '<img style="height:100px; width: auto; display: block;" src="%s"/>' % self.mainImage.url
     admin_image.allow_tags = True
     class Meta:
-        verbose_name = "Elemento de prensa"
-        verbose_name_plural = "Elementos de prensa"
+        verbose_name = "Noticia"
+        verbose_name_plural = "Noticias"

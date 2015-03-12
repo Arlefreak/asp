@@ -56,14 +56,14 @@
                 <a href="https://www.facebook.com/sharer/sharer.php?u=URL" target="_blank">
                     <img src={% static "img/facebook.svg"%} alt="social">
                 </a>
-                <a href="https://twitter.com/intent/tweet?url=URL&text={{proyect.socialText_en}}&via=potro01" target="_blank">
+                <a href="https://twitter.com/intent/tweet?url=URL&text={{proyect.socialText_en}} {{ request.build_absolute_uri }} &via=potro01" target="_blank">
                     <img src={% static "img/twitter.svg"%} alt="social">
                 </a>
                 {% else %}
                 <a href="https://www.facebook.com/sharer/sharer.php?u=URL" target="_blank">
                     <img src={% static "img/facebook.svg"%} alt="social">
                 </a>
-                <a href="https://twitter.com/intent/tweet?url=URL&text={{proyect.socialText_es}}&via=potro01" target="_blank">
+                <a href="https://twitter.com/intent/tweet?url=URL&text={{proyect.socialText_es}} {{ request.build_absolute_uri }}&via=potro01" target="_blank">
                     <img src={% static "img/twitter.svg"%} alt="social">
                 </a>
                 {% endif %}

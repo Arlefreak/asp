@@ -13,9 +13,9 @@
         {% if proyect.secondImage %}
         	<img src="{{proyect.secondImage}}" alt="{{proyect.name}}" class="blackAndWhite">
         {% elif proyect.mainImageBW %}
-        {% endcomment %}
         	<img src="{{proyect.mainImageBW}}" alt="{{proyect.name}}" class="blackAndWhite">
-        {# endif #}
+        {% endif %}
+        {% endcomment %}
         </a>
     {% endfor %}
 </section>

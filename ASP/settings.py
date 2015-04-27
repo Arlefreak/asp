@@ -21,7 +21,7 @@ SECRET_KEY = 'x3*80$lqv0pxe&m8ccge-sv+-j7_%-t_x+d@f(a+!@43e8_*3l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', False)
-DEBUG = False
+#DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (('Arlefreak','arlefreak@gmail.com'),)
@@ -117,7 +117,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-if DEBUG:
+if False:
     COLLECTFAST_ENABLED = False
     PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
     STATIC_ROOT = 'staticfiles'

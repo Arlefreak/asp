@@ -136,6 +136,7 @@ else:
     ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
     COLLECTFAST_ENABLED = True
     CKEDITOR_UPLOAD_PATH = STATIC_URL + 'uploads/'
+    IMAGEKIT_DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 #Email
 EMAIL_USE_TLS = True

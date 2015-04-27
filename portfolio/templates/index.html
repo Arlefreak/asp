@@ -9,11 +9,13 @@
         	class="{{proyect.imageOrientation}}"
         >
         <img src="{{proyect.mainImage.url}}" alt="{{proyect.name}}">
+        {% comment %}
         {% if proyect.secondImage %}
         	<img src="{{proyect.secondImage}}" alt="{{proyect.name}}" class="blackAndWhite">
         {% elif proyect.mainImageBW %}
+        {% endcomment %}
         	<img src="{{proyect.mainImageBW}}" alt="{{proyect.name}}" class="blackAndWhite">
-        {% endif %}
+        {# endif #}
         </a>
     {% endfor %}
 </section>

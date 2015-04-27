@@ -117,7 +117,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-if False:
+if DEBUG:
     COLLECTFAST_ENABLED = False
     PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
     STATIC_ROOT = 'staticfiles'

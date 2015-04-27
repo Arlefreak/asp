@@ -3,7 +3,7 @@ from django.template import defaultfilters
 import os
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
-from imagekit.models import ImageSpecField
+from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill, Adjust
 from embed_video.fields import EmbedVideoField
 
@@ -26,7 +26,8 @@ class Proyect(models.Model):
     socialText_en = models.CharField('Social english', max_length=100, null=True, blank=True)
     pub_date = models.DateTimeField('Created', editable=False, auto_now_add=True)
     mainImage =  models.ImageField('Main Image', upload_to=upload_image_to, blank=False)
-    mainImageBW = ImageSpecField(
+    mainImageBW = ProcessedImageField(
+        upload_to=upload_image_to
                     source='mainImage',
                     processors=[Adjust(color=0.0)],
                     format='JPEG',
@@ -76,22 +77,26 @@ class Image(models.Model):
     imageEffectsOptions = (('no','None'),('bw', 'Black & white'), ('one', 'Effect 1'), ('two', 'Effect 2'), ('tre', 'Effect 3'))
     imageEffect = models.CharField('Effect', max_length=4, choices=imageEffectsOptions, default='bw')
     order = models.PositiveSmallIntegerField('Order', blank=False,null=False,default=1)
-    blackWhite = ImageSpecField(
+    blackWhite = ProcessedImageField(
+        upload_to=upload_image_to
         source='image',
         processors=[Adjust(color=0.0)],
         format='JPEG',
         options={'quality': 100})
-    effectOne = ImageSpecField(
+    effectOne = ProcessedImageField(
+        upload_to=upload_image_to
         source='image',
         processors=[Adjust(brightness=1.45,contrast=1.10,color=0.45)],
         format='JPEG',
         options={'quality': 100})
-    effectTwo = ImageSpecField(
+    effectTwo = ProcessedImageField(
+        upload_to=upload_image_to
         source='image',
          processors=[Adjust(brightness=0.85,contrast=1.30,color=0.45)],
         format='JPEG',
         options={'quality': 100})
-    effectThree = ImageSpecField(
+    effectThree = ProcessedImageField(
+        upload_to=upload_image_to
         source='image',
         processors=[Adjust(brightness=0.85,contrast=1.25,color=1.20)],
         format='JPEG',

@@ -3,12 +3,12 @@ from models import *
 from embed_video.admin import AdminVideoMixin
 
 # Register your models here.
-class ImageInline(admin.StackedInline):
+class ImageInline(admin.TabularInline):
     model = Image
     verbose_name_plural = 'Images'
     extra = 1
 
-class VideoInline(admin.StackedInline):
+class VideoInline(admin.TabularInline):
     model = Video
     verbose_name_plural = 'Videos'
     extra = 1
@@ -21,8 +21,8 @@ class singleInformationAdmin(admin.ModelAdmin):
 
 class proyectAdmin(admin.ModelAdmin):
 	fields = ['order', 'name_es', 'name_en', 'location', 'date','description_es', 'description_en', 'mainImage', 'secondImage', 'imageOrientation', 'home', 'proyects', 'socialText_es', 'socialText_en']
-	list_display = ('name_es', 'description_es', 'admin_image', 'second_image', 'imageOrientation', 'home', 'proyects', 'pub_date', 'order')
-	list_display_links = ('name_es', 'description_es', 'admin_image', 'pub_date')
+	list_display = ('name_es', 'admin_description', 'admin_image', 'second_image', 'imageOrientation', 'home', 'proyects', 'pub_date', 'order')
+	list_display_links = ('name_es', 'admin_image', 'pub_date')
 	list_editable = ('imageOrientation', 'home', 'proyects', 'order')
         inlines = [ImageInline, VideoInline]
         ordering = ('pub_date',)

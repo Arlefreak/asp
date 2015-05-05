@@ -50,10 +50,14 @@ class Proyect(models.Model):
         if self.secondImage:
             img = self.secondImage.url
         else:
-            img = self.mainImageBW
+            img = self.mainImageBW.url
         return '<img style="height:100px; width: auto; display: block;" src="%s"/>' % img
         #return img
     second_image.allow_tags = True
+
+    def admin_description(self):
+        return '<div style="height:100px; max-width: 200px; overflow-y: scroll;">%s' % self.description_es
+    admin_description.allow_tags = True
 
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.name_en
@@ -74,7 +78,7 @@ class Image(models.Model):
     imageOrientationOpts =  (('left', 'left'), ('rigt', 'right'), ('cntr', 'center'), ('covr', 'cover'))
     imageOrientation = models.CharField('Tipo', max_length=4, choices=imageOrientationOpts, default='covr')
     imageEffectsOptions = (('no','None'),('bw', 'Black & white'), ('one', 'Effect 1'), ('two', 'Effect 2'), ('tre', 'Effect 3'))
-    imageEffect = models.CharField('Effect', max_length=4, choices=imageEffectsOptions, default='bw')
+    imageEffect = models.CharField('Effect', max_length=4, choices=imageEffectsOptions, default='no')
     order = models.PositiveSmallIntegerField('Order', blank=False,null=False,default=1)
     blackWhite = ImageSpecField(
         source='image',
@@ -98,16 +102,17 @@ class Image(models.Model):
         options={'quality': 100})
     proyect = models.ForeignKey('Proyect')
     def imageWithEffect(self):
+        tmpImg = ""
         if self.imageEffect == 'no':
             tmpImg = self.image.url
         elif self.imageEffect == 'bw':
-            tmpImg = self.blackWhite
+            tmpImg = self.blackWhite.url
         elif self.imageEffect == 'one':
-            tmpImg = self.effectOne
+            tmpImg = self.effectOne.url
         elif self.imageEffect == 'two':
-            tmpImg = self.effectTwo
+            tmpImg = self.effectTwo.url
         elif self.imageEffect == 'tre':
-            tmpImg = self.effectThree
+            tmpImg = self.effectThree.url
         else:
             tmpImg = self.image.url
         return tmpImg
@@ -115,13 +120,13 @@ class Image(models.Model):
         if self.imageEffect == 'no':
             tmpImg = self.image.url
         elif self.imageEffect == 'bw':
-            tmpImg = self.blackWhite
+            tmpImg = self.blackWhite.url
         elif self.imageEffect == 'one':
-            tmpImg = self.effectOne
+            tmpImg = self.effectOne.url
         elif self.imageEffect == 'two':
-            tmpImg = self.effectTwo
+            tmpImg = self.effectTwo.url
         elif self.imageEffect == 'tre':
-            tmpImg = self.effectThree
+            tmpImg = self.effectThree.url
         else:
             tmpImg = self.image.url
         return '<img style="height:100px; width: auto; display: block;" src="%s"/>' % tmpImg

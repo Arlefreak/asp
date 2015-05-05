@@ -67,3 +67,6 @@ web/static/css/.csscomb.json
 
 #.env
 *.env
+
+*.dump
+*~

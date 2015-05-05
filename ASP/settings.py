@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from getenv import env
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -17,11 +18,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'x3*80$lqv0pxe&m8ccge-sv+-j7_%-t_x+d@f(a+!@43e8_*3l'
+SECRET_KEY = env("SECRETKEY", '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', False)
-#DEBUG = True
+DEBUG = env("DEBUG", True)
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (('Arlefreak','arlefreak@gmail.com'),)
@@ -38,7 +38,6 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = (
-    'django_admin_bootstrapped.bootstrap3',
     'django_admin_bootstrapped',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -80,16 +79,15 @@ WSGI_APPLICATION = 'ASP.wsgi.application'
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'dkg3a5kp14qh0',                      # Or path to database file if using sqlite3.
-        'USER': 'nrtyeidjtprifm',
-        'PASSWORD': 'ppxS0dRM24fc8oa7KyEk5TBDfE',
-        'HOST': 'ec2-54-225-168-181.compute-1.amazonaws.com',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '5432',
-
-    }
-}
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'ASPDB',
+            'USER': 'arlefreak',
+            'PASSWORD': env("DBPASSWD"),
+            'HOST': 'localhost',
+            'PORT': '',
+            }
+        }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -117,30 +115,24 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-if DEBUG:
-    COLLECTFAST_ENABLED = False
-    PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
-    STATIC_ROOT = 'staticfiles'
-    STATIC_URL = '/static/'
-    CKEDITOR_UPLOAD_PATH = STATIC_URL + 'uploads/'
-else:
-    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID',False)
-    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY',False)
-    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME',False)
-    AWS_STORAGE_BUCKET_NAME = 'aspsite'
-    AWS_QUERYSTRING_AUTH = False
-    AWS_PRELOAD_METADATA = True
-    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-    STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
-    ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
-    COLLECTFAST_ENABLED = True
-    CKEDITOR_UPLOAD_PATH = STATIC_URL + 'uploads/'
-    IMAGEKIT_DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID',False)
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY',False)
+AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME',False)
+AWS_STORAGE_BUCKET_NAME='aspsite'
+AWS_QUERYSTRING_AUTH = False
+AWS_PRELOAD_METADATA = True
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
+ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+COLLECTFAST_ENABLED = True
+CKEDITOR_UPLOAD_PATH = STATIC_URL + 'uploads/'
+IMAGEKIT_DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 #Email
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'arlefreak@gmail.com'
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', False)
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', False)
 EMAIL_PORT = 587

@@ -1,9 +1,11 @@
 {% load static from staticfiles %}
+{% load solo_tags %}
+{% get_solo 'portfolio.SocialLinks' as socialLinks %}
 <div class="wrapper" id="social">
 	<ul>
-		<li><a href="https://twitter.com/" title="c">Twitter</a></li>
-		<li><a href="https://www.facebook.com/" title="Facebook">Facebook</a></li>
-		<li><a href="http://instagram.com/" title="Instagram">Instagram</a></li>
+		<li><a href="{{socialLinks.tw}}" title="Twitter">Twitter</a></li>
+		<li><a href="{{socialLinks.fb}}" title="Facebook">Facebook</a></li>
+		<li><a href="{{socialLinks.it}}" title="Instagram">Instagram</a></li>
 	</ul>
 </div>
 <footer id="footer">

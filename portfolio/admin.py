@@ -1,6 +1,7 @@
 from django.contrib import admin
 from models import *
 from embed_video.admin import AdminVideoMixin
+from solo.admin import SingletonModelAdmin
 
 # Register your models here.
 class ImageInline(admin.TabularInline):
@@ -45,7 +46,8 @@ class videoAdmin(AdminVideoMixin, admin.ModelAdmin):
 	ordering = ('order',)
 	list_editable = ('order',)
 
-admin.site.register(SingleInformation, singleInformationAdmin)
+admin.site.register(SingleInformation, SingletonModelAdmin)
+admin.site.register(SocialLinks, SingletonModelAdmin)
 admin.site.register(Proyect, proyectAdmin)
 admin.site.register(Image, imageAdmin)
 admin.site.register(Press, pressAdmin)

@@ -6,6 +6,7 @@ from ckeditor.fields import RichTextField
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill, Adjust
 from embed_video.fields import EmbedVideoField
+from solo.models import SingletonModel
 
 def upload_image_to(instance, filename):
         from django.utils.timezone import now
@@ -148,7 +149,7 @@ class Video(models.Model):
     def __unicode__(self):
         return self.name
 
-class SingleInformation(models.Model):
+class SingleInformation(SingletonModel):
     aboutImage = models.ImageField('Imagen about', upload_to = upload_image_to,null = False, blank = False)
     aboutText_es = RichTextField()
     aboutText_en = RichTextField()
@@ -188,3 +189,8 @@ class Press(models.Model):
     class Meta:
         verbose_name = "Noticia"
         verbose_name_plural = "Noticias"
+
+class SocialLinks(SingletonModel):
+    fb = models.URLField('Facebook')
+    tw = models.URLField('Twitter')
+    it = models.URLField('Instagram')

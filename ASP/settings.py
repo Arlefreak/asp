@@ -31,6 +31,7 @@ ALLOWED_HOSTS = [
     'asp.herokuapp.com',
     'asp.arlefreak.com',
     'a-sp.mx',
+    'asp.mx',
     'www.a-sp.mx',
     'smtp.gmail.com',
     'aspsite.s3.amazonaws.com']

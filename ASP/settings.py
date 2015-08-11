@@ -32,6 +32,7 @@ ALLOWED_HOSTS = [
     'asp.arlefreak.com',
     'a-sp.mx',
     'asp.mx',
+    'www.asp.mx',
     'www.a-sp.mx',
     'smtp.gmail.com',
     'aspsite.s3.amazonaws.com']

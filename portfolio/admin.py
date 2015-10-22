@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import *
+from .models import *
 from embed_video.admin import AdminVideoMixin
 from solo.admin import SingletonModelAdmin
 
@@ -25,8 +25,8 @@ class proyectAdmin(admin.ModelAdmin):
 	list_display = ('name_es', 'admin_description', 'admin_image', 'second_image', 'imageOrientation', 'home', 'proyects', 'pub_date', 'order')
 	list_display_links = ('name_es', 'admin_image', 'pub_date')
 	list_editable = ('imageOrientation', 'home', 'proyects', 'order')
-        inlines = [ImageInline, VideoInline]
-        ordering = ('pub_date',)
+	inlines = [ImageInline, VideoInline]
+	ordering = ('pub_date',)
 
 class imageAdmin(admin.ModelAdmin):
 	list_display = ('name', 'admin_image', 'imageOrientation', 'proyect', 'imageEffect', 'order')

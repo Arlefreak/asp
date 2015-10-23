@@ -14,7 +14,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 import environ
 root = environ.Path(__file__) - 3 # three folder back (/a/b/c/ - 3 = /)
-env = environ.Env(DEBUG=(bool, False),) # set default values and casting
+env = environ.Env(DEBUG=(bool, False)) # set default values and casting
 environ.Env.read_env() # reading .env file
 
 SECRET_KEY = env('SECRET_KEY')
@@ -23,7 +23,8 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env("DEBUG")
 TEMPLATE_DEBUG = DEBUG
 
-ADMINS = (('Arlefreak','arlefreak@gmail.com'),)
+ADMINS = (('Arlefreak','hi@arlefreak.com'),)
+
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
@@ -111,18 +112,23 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
+#CKEDITOR
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat', 'Source']
+        ]
+    }
+}
 
 
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
-AWS_STORAGE_BUCKET_NAME='aspsite'
 AWS_QUERYSTRING_AUTH = False
 AWS_PRELOAD_METADATA = True
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'

@@ -36,8 +36,8 @@ class imageAdmin(admin.ModelAdmin):
 	list_filter = ('proyect',)
 
 class pressAdmin(admin.ModelAdmin):
-	list_display = ('name_es', 'admin_image', 'description_es', 'pub_date')
-	list_display_links = ('name_es', 'admin_image', 'description_es', 'pub_date')
+	list_display = ('name_es', 'admin_image', 'admin_description', 'pub_date')
+	list_display_links = ('name_es', 'admin_image', 'pub_date')
 	ordering = ('pub_date',)
 
 class videoAdmin(AdminVideoMixin, admin.ModelAdmin):

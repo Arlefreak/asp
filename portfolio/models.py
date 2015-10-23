@@ -60,7 +60,7 @@ class Proyect(models.Model):
         return '<div style="height:100px; max-width: 200px; overflow-y: scroll;">%s' % self.description_es
     admin_description.allow_tags = True
 
-    def __unicode__(self):  # Python 3: def __str__(self):
+    def __str__(self):  # Python 3: def __str__(self):
         return self.name_en
     class Meta:
         verbose_name = 'Proyect'
@@ -135,7 +135,7 @@ class Image(models.Model):
     class Meta:
         verbose_name = 'Imagen'
         verbose_name_plural = 'Imagenes'
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 class Video(models.Model):
@@ -146,7 +146,7 @@ class Video(models.Model):
     class Meta:
         verbose_name = 'Video'
         verbose_name_plural = 'Videos'
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 class SingleInformation(SingletonModel):
@@ -183,6 +183,9 @@ class Press(models.Model):
     description_es = RichTextField()
     description_en = RichTextField()
     pub_date = models.DateTimeField('Created', editable=False, auto_now_add=True)
+    def admin_description(self):
+        return '<div>%s</div>' % self.description_es
+    admin_description.allow_tags = True
     def admin_image(self):
         return '<img style="height:100px; width: auto; display: block;" src="%s"/>' % self.mainImage.url
     admin_image.allow_tags = True

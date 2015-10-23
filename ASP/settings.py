@@ -10,18 +10,17 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-from getenv import env
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+import environ
+root = environ.Path(__file__) - 3 # three folder back (/a/b/c/ - 3 = /)
+env = environ.Env(DEBUG=(bool, False),) # set default values and casting
+environ.Env.read_env() # reading .env file
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRETKEY", '')
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DEBUG", True)
+DEBUG = env("DEBUG")
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (('Arlefreak','arlefreak@gmail.com'),)
@@ -120,9 +119,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 
-AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID',False)
-AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY',False)
-AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME',False)
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
 AWS_STORAGE_BUCKET_NAME='aspsite'
 AWS_QUERYSTRING_AUTH = False
 AWS_PRELOAD_METADATA = True
@@ -136,7 +135,7 @@ IMAGEKIT_DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 #Email
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'arlefreak@gmail.com'
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', False)
-EMAIL_PORT = 587
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')

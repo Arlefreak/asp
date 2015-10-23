@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response, render, get_object_or_404
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
-from models import *
+from .models import *
 
 def home(request):
     p_list = Proyect.objects.filter(home=True).order_by('order')

@@ -6,7 +6,6 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^i18n/', include('django.conf.urls.i18n')),
-    url(r'^ckeditor/', include('ckeditor.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'portfolio.views.home', name='home'),
     url(r'^about/', 'portfolio.views.about', name='about'),

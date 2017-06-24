@@ -8,35 +8,29 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+import os
 import environ
-root = environ.Path(__file__) - 3 # three folder back (/a/b/c/ - 3 = /)
-env = environ.Env(DEBUG=(bool, False)) # set default values and casting
-environ.Env.read_env() # reading .env file
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+root = environ.Path(__file__) - 3
+env = environ.Env(DEBUG=(bool, True),)
+environ.Env.read_env()
 
 SECRET_KEY = env('SECRET_KEY')
+DEBUG = env('DEBUG')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DEBUG")
-TEMPLATE_DEBUG = DEBUG
+if(DEBUG):
+    ALLOWED_HOSTS = ['*']
+else:
+    ALLOWED_HOSTS = [
+        'localhost',
+        '127.0.0.1',
+        '.a-sp.mx',
+        '.asp.mx',
+    ]
 
-ADMINS = (('Arlefreak','hi@arlefreak.com'),)
-
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    'asp.herokuapp.com',
-    'asp.arlefreak.com',
-    'a-sp.mx',
-    'asp.mx',
-    'www.asp.mx',
-    'www.a-sp.mx',
-    'smtp.gmail.com',
-    'aspsite.s3.amazonaws.com']
-
+ADMINS = (('Arlefreak', 'hi@arlefreak.com'),)
 
 # Application definition
 
@@ -99,15 +93,15 @@ WSGI_APPLICATION = 'ASP.wsgi.application'
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
 DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'ASPDB',
-            'USER': 'arlefreak',
-            'PASSWORD': env("DBPASSWD"),
-            'HOST': 'localhost',
-            'PORT': '',
-            }
-        }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
+    }
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -145,19 +139,37 @@ CKEDITOR_CONFIGS = {
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
 AWS_QUERYSTRING_AUTH = False
 AWS_PRELOAD_METADATA = True
-STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
-ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
-COLLECTFAST_ENABLED = True
-CKEDITOR_UPLOAD_PATH = STATIC_URL + 'uploads/'
-IMAGEKIT_DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
-#Email
+if DEBUG:
+    STATIC_URL = '/static/'
+    STATICFILES_LOCATION = 'static'
+else:
+    COLLECTFAST_ENABLED = True
+    STATICFILES_LOCATION = 'static'
+    STATICFILES_STORAGE = 'ASP.custom_storages.StaticStorage'
+    STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+
+MEDIA_ROOT = 'media'
+MEDIAFILES_LOCATION = 'media'
+MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+DEFAULT_FILE_STORAGE = 'ASP.custom_storages.MediaStorage'
+
+ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = 'pillow'
+
+# Email
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
 EMAIL_USE_TLS = True
-EMAIL_HOST = os.environ.get('EMAIL_HOST')
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = env('EMAIL_PORT')

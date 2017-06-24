@@ -1,5 +1,6 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
+from .views import *
 
-urlpatterns = patterns('',
-	url(r'^proyect/(?P<proyect_name>[\w-]+)/$', 'portfolio.views.singleProyect', name='singleProyect'),
+urlpatterns = (
+    url(r'^proyect/(?P<proyect_name>[\w-]+)/$', singleProyect, name='singleProyect'),
 )

@@ -1,0 +1,91 @@
+#header
+    margin 55px 0 0 0
+    width 100%
+    position fixed
+    z-index 10000
+    top 0
+    letter-spacing 0.2em
+    font-size 0.59em
+    height 70px
+    display block
+    @media screen and (min-width: 640px)
+        font-size 0.7em
+    @media screen and (min-width: 1024px)
+        font-size 0.78em
+    @media screen and (min-width: 1400px)
+        font-size 1.0em
+    .wrapper
+        display flex
+        flex-flow row wrap
+    .logo
+        text-decoration none
+        display block
+        height auto
+        width 100%
+        @media screen and (min-width: 640px)
+            width 100px
+    img
+        display block
+        width 100%
+        max-width 100px
+        margin auto
+        @media screen and (min-width: 640px)
+            margin 0 0 0 -10px
+    #menu
+        display block
+        width 20px
+        height 20px
+        margin 10px 5% 0 0
+        @media screen and (min-width: 640px)
+            display none
+    nav
+        width 100%
+        display flex
+        flex-flow row wrap
+        flex 1
+        align-items center
+        justify-content center
+        @media screen and (min-width: 640px)
+            width 70%
+            align-items center
+            justify-content flex-end
+        ul
+            display block
+            padding 0
+            margin 0
+            display flex
+            flex-flow row wrap
+            justify-content flex-end
+            align-items center
+            li
+                list-style none
+                margin 0 0 0 10px
+                a
+                    text-decoration none
+                    color $black
+                    border-bottom solid 1px rgba(0,0,0,0)
+                    transition border 500ms ease-out
+                    &.active
+                    &:hover
+                        border-bottom solid 1px $black
+        .nav-menu
+            width auto
+        .lang-menu
+            display flex
+            width auto
+            margin 0 0 0 20px
+            flex-flow row wrap
+            justify-content flex-end
+            align-items center
+            form
+                display inline-block
+                float left
+            button
+                background none!important
+                border none
+                padding 0!important
+                outline none!important
+                box-sizing border-box
+                &.active
+                &:hover
+                    border-bottom solid 1px $black

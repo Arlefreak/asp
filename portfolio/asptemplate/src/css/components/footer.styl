@@ -1,0 +1,48 @@
+#footer
+    position fixed
+    bottom 12vh
+    left 0
+    display block
+    overflow auto
+    width 100%
+    img
+        display inline-block
+        height auto
+        width 100px
+        margin 12px 0 0 0
+#social
+#socialAbout
+    text-align right
+    ul
+        display inline-block
+        width 80%
+        margin 0 3% 10px 0
+        text-align right
+        padding 10px 0 10px 0
+        list-style none
+        letter-spacing 0.2em
+        font-size 0.59em
+        height auto
+        @media screen and (min-width: 640px)
+            font-size 0.7em
+        @media screen and (min-width: 1024px)
+            font-size 0.78em
+        @media screen and (min-width: 1400px)
+            font-size 1.0em
+        li
+            display inline-block
+            text-decoration none
+            margin 0 6% 0 0
+            a
+                width auto
+                text-decoration none
+                color black
+                border-bottom solid 1px rgba(0,0,0,0)
+                transition border 500ms ease-out
+                &.active
+                &:hover
+                    border-bottom solid 1px $black
+
+#socialAbout
+    ul
+        margin 50px 3% 10px 10px

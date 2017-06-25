@@ -25,11 +25,11 @@ def press(request):
     return render(request, 'press.html', context)
 
 def proyects(request):
-	p_list = Proyect.objects.filter(proyects=True).order_by('order')
-	context = {"p_list": p_list}
-	return render(request, 'proyects.html', context)
+    p_list = Proyect.objects.filter(proyects=True).order_by('order')
+    context = {"p_list": p_list}
+    return render(request, 'proyects.html', context)
 
 def singleProyect(request, proyect_name):
-	proyect = get_object_or_404(Proyect, slug=proyect_name)
-	context = {'proyect': proyect}
-	return render(request, 'single.html', context)
+    proyect = get_object_or_404(Proyect, slug=proyect_name)
+    context = {'proyect': proyect}
+    return render(request, 'single.html', context)

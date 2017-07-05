@@ -5,6 +5,7 @@
     <article>
         <a
             href="{% url 'singleProyect' proyect.slug %}"
+            title="{{proyect.name_es}}"
             class="{{proyect.imageOrientation}}"
             >
             <img src="{{proyect.mainImage.url}}">
@@ -20,6 +21,9 @@
             {% else %}
             {{proyect.name_es}}
             {% endif %}
+            <br>
+            {{proyect.location}}<br>
+            {{proyect.date}}<br>
         </span>
     </article>
     {% endfor %}

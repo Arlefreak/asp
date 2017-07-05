@@ -695,7 +695,13 @@ main.wrapper section {
   text-decoration: none;
   display: block;
   height: auto;
-  width: 100%;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
 }
 @media screen and (min-width: 640px) {
   #header .logo {
@@ -745,9 +751,9 @@ main.wrapper section {
   -moz-box-flex: 1;
   -o-box-flex: 1;
   box-flex: 1;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
   -webkit-box-align: center;
   -moz-box-align: center;
   -o-box-align: center;

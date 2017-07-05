@@ -6,7 +6,7 @@
 <section class="slider">
     {% for item in p_list %}
     <a
-        href="{{ url }}"
+        href="{{ item.url }}"
         >
         <img src="{{item.image.url}}">
     </a>
@@ -22,9 +22,9 @@
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 2000,
-        speed: 500,
+        speed: 1000,
         fade: true,
-        cssEase: 'linear',
+        cssEase: 'ease-in-out',
         arrows: false,
     });
 </script>

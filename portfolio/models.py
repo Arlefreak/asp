@@ -42,11 +42,6 @@ class Proyect(models.Model):
     def save(self, *args, **kwargs):
         self.slug = defaultfilters.slugify(self.name_es)
         super(Proyect, self).save(*args, **kwargs)
-
-    def admin_image(self):
-        return '<img style="height:100px; width: auto; display: block;" src="%s"/>' % self.mainImage.url
-    admin_image.allow_tags = True
-
     def second_image(self):
         if self.secondImage:
             img = self.secondImage.url
@@ -186,12 +181,18 @@ class Press(models.Model):
     def admin_description(self):
         return '<div>%s</div>' % self.description_es
     admin_description.allow_tags = True
-    def admin_image(self):
-        return '<img style="height:100px; width: auto; display: block;" src="%s"/>' % self.mainImage.url
-    admin_image.allow_tags = True
     class Meta:
         verbose_name = "Noticia"
         verbose_name_plural = "Noticias"
+
+class HomeSliderImages(models.Model):
+    url = models.URLField('URL')
+    image = models.ImageField('Imagen', upload_to = upload_image_to)
+    class Meta:
+        verbose_name = "Home Image"
+        verbose_name_plural = "Home Images"
+    def __str__(self):
+        return self.url
 
 class SocialLinks(SingletonModel):
     fb = models.URLField('Facebook')

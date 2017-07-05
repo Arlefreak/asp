@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from .models import *
 
 def home(request):
-    p_list = Proyect.objects.filter(home=True).order_by('order')
+    p_list = HomeSliderImages.objects.all()
     context = {'p_list': p_list}
     return render(request, 'index.html', context)
 

@@ -4,17 +4,11 @@
 {% endblock %}
 {% block content %}
 <section class="slider">
-    {% for proyect in p_list %}
+    {% for item in p_list %}
     <a
-        href="{% url 'singleProyect' proyect.slug %}"
-        title="{{proyect.name_es}}"
+        href="{{ url }}"
         >
-        <img src="{{proyect.mainImage.url}}" alt="{{proyect.name}}">
-        {% if proyect.secondImage %}
-        <img src="{{proyect.secondImage.url}}" alt="{{proyect.name}}" class="blackAndWhite">
-        {% elif proyect.mainImageBW %}
-        <img src="{{proyect.mainImageBW.url}}" alt="{{proyect.name}}" class="blackAndWhite">
-        {% endif %}
+        <img src="{{item.image.url}}">
     </a>
     {% endfor %}
 </section>

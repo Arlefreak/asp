@@ -716,7 +716,7 @@ main.wrapper section {
 }
 @media screen and (min-width: 640px) {
   #header img {
-    margin: 0 0 0 -10px;
+    margin: 0 0 0 -8px;
   }
 }
 #header #menu {

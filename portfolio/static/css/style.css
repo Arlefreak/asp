@@ -542,7 +542,12 @@ body .wrapper {
   line-height: 200%;
 }
 main.wrapper {
-  margin: 90px auto 0px auto;
+  margin: 120px auto 0px auto;
+}
+@media screen and (min-width: 1024px) {
+  main.wrapper {
+    margin: 140px auto 0px auto;
+  }
 }
 main.wrapper section {
   width: 100%;
@@ -590,7 +595,7 @@ main.wrapper section {
 #socialAbout ul {
   display: inline-block;
   width: 100%;
-  margin: 40px 0 40px 0;
+  margin: 20px 0 40px 0;
   text-align: right;
   padding: 0 0 0 0;
   list-style: none;
@@ -641,7 +646,7 @@ main.wrapper section {
   border-bottom: solid 1px #000;
 }
 #header {
-  margin: 20px 0 0 0;
+  margin: 40px 0 0 0;
   width: 100%;
   position: fixed;
   z-index: 10000;
@@ -709,6 +714,11 @@ main.wrapper section {
 @media screen and (min-width: 640px) {
   #header img {
     margin: 0 0 0 -8px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  #header img {
+    max-width: 150px;
   }
 }
 #header #menu {

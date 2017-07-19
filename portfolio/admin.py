@@ -26,7 +26,7 @@ class singleInformationAdmin(admin.ModelAdmin):
     list_editable = ('published',)
     ordering = ('id',)
 
-class proyectAdmin(admin.ModelAdmin, AdminImageMixin):
+class proyectAdmin(admin.ModelAdmin):
     fields = ['order', 'name_es', 'name_en', 'location', 'date','description_es', 'description_en', 'mainImage', 'secondImage', 'imageOrientation', 'home', 'proyects', 'socialText_es', 'socialText_en']
     list_display = ('name_es', 'admin_description', 'admin_image', 'second_image', 'imageOrientation', 'home', 'proyects', 'pub_date', 'order')
     list_display_links = ('name_es', 'admin_image', 'pub_date')

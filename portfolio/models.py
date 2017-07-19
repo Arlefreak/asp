@@ -54,6 +54,9 @@ class Proyect(models.Model):
     def admin_description(self):
         return '<div style="height:100px; max-width: 200px; overflow-y: scroll;">%s' % self.description_es
     admin_description.allow_tags = True
+    def admin_image(self):
+        return u"<img src='%s' style='height: 100px; width: auto; display: block'/>" % self.mainImage.url
+    admin_image.allow_tags = True
 
     def __str__(self):  # Python 3: def __str__(self):
         return self.name_en

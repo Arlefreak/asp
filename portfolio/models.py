@@ -176,7 +176,7 @@ class SingleInformation(SingletonModel):
 class Press(models.Model):
     name_es = models.CharField('Name spanish',max_length=140, null=False, blank=False)
     name_en = models.CharField('Name english',max_length=140, null=False, blank=False)
-    mainImage = models.ImageField('Main image', upload_to = upload_image_to,null = False, blank = False)
+    image = models.ImageField('Main image', upload_to = upload_image_to,null = False, blank = False)
     url = models.URLField('URL')
     description_es = RichTextField()
     description_en = RichTextField()

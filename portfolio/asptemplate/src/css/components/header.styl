@@ -5,15 +5,15 @@
     z-index 10000
     top 0
     letter-spacing 0.2em
-    font-size 0.59em
+    font-size 0.6em
     height 70px
     display block
     @media screen and (min-width: 640px)
         font-size 0.7em
     @media screen and (min-width: 1024px)
-        font-size 0.78em
+        font-size 0.8em
     @media screen and (min-width: 1400px)
-        font-size 1.0em
+        font-size 0.9em
     .wrapper
         display flex
         flex-flow row wrap
@@ -32,7 +32,7 @@
         @media screen and (min-width: 640px)
             margin 0 0 0 -8px
         @media screen and (min-width: 1024px)
-            max-width 150px
+            max-width 140px
     #menu
         display block
         width 20px
@@ -59,9 +59,10 @@
             flex-flow row wrap
             justify-content flex-end
             align-items center
+            li:not(:first-child)
+                margin 0 0 0 15px
             li
                 list-style none
-                margin 0 0 0 10px
                 a
                     text-decoration none
                     color $black
@@ -75,7 +76,7 @@
         .lang-menu
             display flex
             width auto
-            margin 0 0 0 20px
+            margin 0 0 0 30px
             flex-flow row wrap
             justify-content flex-end
             align-items center

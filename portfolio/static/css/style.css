@@ -652,7 +652,7 @@ main.wrapper section {
   z-index: 10000;
   top: 0;
   letter-spacing: 0.2em;
-  font-size: 0.59em;
+  font-size: 0.6em;
   height: 70px;
   display: block;
 }
@@ -663,12 +663,12 @@ main.wrapper section {
 }
 @media screen and (min-width: 1024px) {
   #header {
-    font-size: 0.78em;
+    font-size: 0.8em;
   }
 }
 @media screen and (min-width: 1400px) {
   #header {
-    font-size: 1em;
+    font-size: 0.9em;
   }
 }
 #header .wrapper {
@@ -718,7 +718,7 @@ main.wrapper section {
 }
 @media screen and (min-width: 1024px) {
   #header img {
-    max-width: 150px;
+    max-width: 140px;
   }
 }
 #header #menu {
@@ -818,9 +818,11 @@ main.wrapper section {
   -webkit-align-items: center;
   align-items: center;
 }
+#header nav ul li:not(:first-child) {
+  margin: 0 0 0 15px;
+}
 #header nav ul li {
   list-style: none;
-  margin: 0 0 0 10px;
 }
 #header nav ul li a {
   text-decoration: none;
@@ -847,7 +849,7 @@ main.wrapper section {
   display: box;
   display: flex;
   width: auto;
-  margin: 0 0 0 20px;
+  margin: 0 0 0 30px;
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
   -o-box-orient: horizontal;

@@ -1,6 +1,8 @@
-from django.conf.urls import include, url
-from .views import *
+from django.conf.urls import url
 
-urlpatterns = (
-    url(r'^proyect/(?P<proyect_name>[\w-]+)/$', singleProyect, name='singleProyect'),
-)
+from .views import singleProyect
+
+urlpatterns = (url(
+    r'^proyect/(?P<proyect_name>[\w-]+)/$',
+    singleProyect,
+    name='singleProyect'), )

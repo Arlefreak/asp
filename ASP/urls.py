@@ -1,15 +1,21 @@
-from django.conf.urls import include, url, i18n
 from django.contrib import admin
+from django.urls import include, path
 from django.views.generic import TemplateView
-from portfolio.views import *
 
-urlpatterns = (
-    url(r'^i18n/', include('django.conf.urls.i18n')),
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', home, name='home'),
-    url(r'^about/', about, name='about'),
-    url(r'^news/', press, name='press'),
-    url(r'^proyects/', proyects, name='proyects'),
-    url(r'^proyect/(?P<proyect_name>[\w-]+)/$', singleProyect, name='singleProyect'),
-    url(r'^robots\.txt$', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
-)
+from portfolio import views
+
+urlpatterns = [
+    path('i18n/', include('django.conf.urls.i18n')),
+    path('admin/', admin.site.urls),
+    path('', views.home, name='home'),
+    path('about/', views.about, name='about'),
+    path('news/', views.press, name='press'),
+    path('proyects/', views.proyects, name='proyects'),
+    path(
+        'proyect/<slug:proyect_name>/',
+        views.singleProyect,
+        name='singleProyect'),
+    path('robots\.txt',
+         TemplateView.as_view(
+             template_name='robots.txt', content_type='text/plain')),
+]

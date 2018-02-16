@@ -8,19 +8,20 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
-
 import os
+
 import environ
+from django.utils.translation import gettext_lazy as _
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 root = environ.Path(__file__) - 3
-env = environ.Env(DEBUG=(bool, True),)
+env = environ.Env(DEBUG=(bool, True), )
 environ.Env.read_env()
 
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
-if(DEBUG):
+if (DEBUG):
     ALLOWED_HOSTS = ['*']
 else:
     ALLOWED_HOSTS = [
@@ -30,7 +31,7 @@ else:
         '.asp.mx',
     ]
 
-ADMINS = (('Arlefreak', 'hi@arlefreak.com'),)
+ADMINS = (('Arlefreak', 'hi@arlefreak.com'), )
 
 # Application definition
 
@@ -41,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
     'solo',
     'ckeditor',
     'imagekit',
@@ -49,16 +51,16 @@ INSTALLED_APPS = (
     'portfolio',
 )
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
+]
 
 TEMPLATES = [
     {
@@ -89,7 +91,6 @@ ROOT_URLCONF = 'ASP.urls'
 
 WSGI_APPLICATION = 'ASP.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
@@ -107,13 +108,20 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'es-Mx'
-ugettext = lambda s: s
+# LANGUAGE_CODE = 'es-Mx'
+# ugettext = lambda s: s
 
-LANGUAGES = (
-    ('es-Mx', ugettext('Spanish')),
-    ('en', ugettext('English')),
-)
+# LANGUAGES = (
+#     ('es-Mx', ugettext('Spanish')),
+#     ('en', ugettext('English')),
+# )
+
+LANGUAGE_CODE = 'es'
+
+LANGUAGES = [
+    ('es', _('Spanish')),
+    ('en', _('English')),
+]
 
 TIME_ZONE = 'UTC'
 
@@ -126,16 +134,14 @@ USE_TZ = True
 #CKEDITOR
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'Custom',
-        'toolbar_Custom': [
-            ['Bold', 'Italic', 'Underline'],
-            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-            ['Link', 'Unlink'],
-            ['RemoveFormat', 'Source']
-        ]
+        'toolbar':
+        'Custom',
+        'toolbar_Custom': [['Bold', 'Italic', 'Underline'], [
+            'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-',
+            'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'
+        ], ['Link', 'Unlink'], ['RemoveFormat', 'Source']]
     }
 }
-
 
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
@@ -152,7 +158,8 @@ else:
     COLLECTFAST_ENABLED = True
     STATICFILES_LOCATION = 'static'
     STATICFILES_STORAGE = 'ASP.custom_storages.StaticStorage'
-    STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+    STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN,
+                                     STATICFILES_LOCATION)
 
 MEDIA_ROOT = 'media'
 MEDIAFILES_LOCATION = 'media'

@@ -1,6 +1,13 @@
 .slider
+    height 70vh
+    overflow hidden
     div
         width 100%
+    div.slick-list
+        transform translate(-50%,-50%)
+        position absolute
+        top 50%
+        left 50%
     a
         width 100%
         display block
@@ -14,3 +21,6 @@
             height auto
             display block
             transition visibility 2s ease 2s,opacity 2s ease
+.slider
+    @media screen and (max-width: 640px)
+        height 65vh

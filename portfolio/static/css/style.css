@@ -1256,8 +1256,22 @@ main.wrapper section {
 .single .gallery .videoWrapper iframe {
   margin: 43px 0 0 0;
 }
+.slider {
+  height: 70vh;
+  overflow: hidden;
+}
 .slider div {
   width: 100%;
+}
+.slider div.slick-list {
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }
 .slider a {
   width: 100%;
@@ -1279,4 +1293,9 @@ main.wrapper section {
   -o-transition: visibility 2s ease 2s, opacity 2s ease;
   -ms-transition: visibility 2s ease 2s, opacity 2s ease;
   transition: visibility 2s ease 2s, opacity 2s ease;
+}
+@media screen and (max-width: 640px) {
+  .slider {
+    height: 65vh;
+  }
 }
